@@ -27,8 +27,10 @@ public class CourseSchedule {
 			valuesMap.put(prerequisites[i][0], values);
 		}
 
+		HashSet<Integer> alreadyCheckSet = new HashSet<>();
 		for (int key : valuesMap.keySet()) {
-			if (checkDuplicate(valuesMap, key, new HashSet<Integer>())) {
+			HashSet<Integer> requireSet = new HashSet<>();
+			if (checkDuplicate(valuesMap, key, requireSet, alreadyCheckSet)) {
 				return false;
 			}
 		}
@@ -37,27 +39,17 @@ public class CourseSchedule {
 
 	}
 
-	private boolean checkDuplicate(HashMap<Integer, HashSet<Integer>> valuesMap, int key,
-			HashSet<Integer> checkedKeys) {
-		if (checkedKeys.contains(key)) {
+	private boolean checkDuplicate(HashMap<Integer, HashSet<Integer>> valuesMap, int key, HashSet<Integer> checkSet, HashSet<Integer> alreadyCheckSet) {
+		if(alreadyCheckSet.contains(key)){
 			return false;
-		}
-		checkedKeys.add(key);
-		HashSet<Integer> map = valuesMap.get(key);
-		if (map != null) {
-			for (int val : map) {
-				if (checkedKeys.contains(val)) {
-					return true;
-				} else {
-					if (checkDuplicate(valuesMap, val, new HashSet<Integer>(checkedKeys))) {
-						return true;
-					}
-				}
-
+		}else{
+			if(checkSet.contains(key)){
+				return true;
+			}else{
+				checkSet.addAll(valuesMap.get(key));
 			}
 		}
-
-		return false;
+		
 	}
 
 }
