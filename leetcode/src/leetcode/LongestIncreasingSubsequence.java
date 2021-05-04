@@ -15,21 +15,31 @@ public class LongestIncreasingSubsequence {
 			return 1;
 		}
 
-		int maxLengthOfLis = 0;
-
-		for (int i = 0; i < nums.length; i++) {
-			int val = nums[i];
-			int lengthOfLis = 1;
-			for (int j = i + 1; j < nums.length; j++) {
-				if (nums[j] > val) {
-					lengthOfLis++;
-					val = nums[j];
-				}
-			}
-
-			maxLengthOfLis = Math.max(maxLengthOfLis, lengthOfLis);
-
+		int[] maxLength = new int[nums.length];
+		for (int i = 0; i < maxLength.length; i++) {
+			maxLength[i] = Integer.MIN_VALUE;
 		}
+
+		int maxLengthOfLis = 0;
+		for (int i = 0; i < nums.length; i++) {
+			maxLengthOfLis = Math.max(maxLengthOfLis, findLIS(i, nums, 1, maxLength));
+		}
+
 		return maxLengthOfLis;
+	}
+
+	private int findLIS(int idx, int[] nums, int length, int[] maxLength) {
+		if (length <= maxLength[idx]) {
+			return 0;
+		}
+		maxLength[idx] = length;
+
+		int maxLIS = length;
+		for (int i = idx; i < nums.length; i++) {
+			if (nums[idx] < nums[i]) {
+				maxLIS = Math.max(maxLIS, findLIS(i, nums, length + 1, maxLength));
+			}
+		}
+		return maxLIS;
 	}
 }
