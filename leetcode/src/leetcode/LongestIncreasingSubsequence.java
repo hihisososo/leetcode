@@ -11,7 +11,7 @@ public class LongestIncreasingSubsequence {
 			return 0;
 		}
 
-		if (nums.length == 1) {
+		if (nums.length == 1) { 
 			return 1;
 		}
 
