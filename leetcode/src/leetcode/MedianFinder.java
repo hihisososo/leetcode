@@ -2,43 +2,15 @@ package leetcode;
 
 class MedianFinder {
 
-	long sum = 0;
-	int size = 0;
-	int leftInserted = 0;
-	int rightInserted = 0;
-	int midLeftVal = 0;
-	int midRightVal = 0;
-	int midVal = Integer.MIN_VALUE;
+	long size = 0;
+	int[] number = new int[200001];
 
 	public MedianFinder() {
-
 	}
 
 	public void addNum(int num) {
-		if (size == 0) {
-			midVal = num;
-		}
-
-		sum += num;
+		number[num]++;
 		size++;
-		if (midVal <= num) {
-			rightInserted++;
-			midRightVal = num;
-		} else {
-			leftInserted++;
-			midLeftVal = num;
-		}
-		if (size % 2 != 0) {
-			if (leftInserted == 2) {
-				midVal = midLeftVal;
-			} else if (rightInserted == 2) {
-				midVal = midRightVal;
-			}else{
-				midLeftVal = 
-			}
-			leftInserted = 0;
-			rightInserted = 0;
-		}
 	}
 
 	public double findMedian() {
