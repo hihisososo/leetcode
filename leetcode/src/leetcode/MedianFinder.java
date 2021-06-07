@@ -1,5 +1,6 @@
 package leetcode;
 
+import java.util.Comparator;
 import java.util.PriorityQueue;
 
 class MedianFinder {
@@ -12,17 +13,19 @@ class MedianFinder {
 
 	public MedianFinder() {
 		minHeap = new PriorityQueue<>();
-		maxHeap = new PriorityQueue<>();
+		maxHeap = new PriorityQueue<>(Comparator.reverseOrder());
 	}
 
 	public void addNum(int num) {
-		allSize++;
+
 		if(allSize == 0){
+			allSize++;
 			maxHeapSize++;
 			maxHeap.offer(num);
 			return;
 		}
 
+		allSize++;
 		if(maxHeapSize > minHeapSize){
 			int max = maxHeap.peek();
 			minHeapSize++;
@@ -36,35 +39,28 @@ class MedianFinder {
 			int max = minHeap.peek();
 			maxHeapSize++;
 			if(max < num){
-				maxHeap.offer(num);
+				maxHeap.offer(minHeap.poll());
+				minHeap.offer(num);
 			}else{
-				minHeap.offer(maxHeap.poll());
 				maxHeap.offer(num);
 			}
 		}
-		int middle = maxHeap.peek();
-		if(num > middle){
-			minHeap.offer(num);
-		}
-		size++;
 	}
 
 	public double findMedian() {
-		if (size % 2 == 0) {
-			return (double) sum / size;
-		} else {
-			return midVal;
+		if(allSize % 2 == 1){
+			return maxHeap.peek();
+		}else{
+			return (double)(maxHeap.peek() + minHeap.peek()) / 2;
 		}
-		return 0;
 	}
 
 	public static void main(String[] args) {
 		MedianFinder obj = new MedianFinder();
-		obj.addNum(-1);
-		obj.addNum(-2);
-		obj.addNum(-3);
-		obj.addNum(-4);
-		obj.addNum(-5);
+		obj.addNum(1);
+		obj.addNum(2);
+		System.out.println(obj.findMedian());
+		obj.addNum(3);
 		System.out.println(obj.findMedian());
 	}
 }
