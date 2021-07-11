@@ -1,11 +1,11 @@
 package leetcode;
 
-import java.util.ArrayList;
-import java.util.Arrays;
+import common.TreeNode;
+import util.TreeUtil;
 
 public class HouseRobberiii {
     public static void main(String[] args) {
-        System.out.println(new HouseRobberiii().rob(deserialize("3,2,null,3,3,null,1")));
+        System.out.println(new HouseRobberiii().rob(TreeUtil.deserialize("3,2,null,3,3,null,1")));
     }
 
     public int rob(TreeNode root) {
@@ -34,44 +34,4 @@ public class HouseRobberiii {
 
     }
 
-    public static class TreeNode {
-        int val;
-        TreeNode left;
-        TreeNode right;
-
-        TreeNode() {
-        }
-
-        TreeNode(int val) {
-            this.val = val;
-        }
-
-        TreeNode(int val, TreeNode left, TreeNode right) {
-            this.val = val;
-            this.left = left;
-            this.right = right;
-        }
-    }
-
-    public static TreeNode deserialize(String data) {
-        ArrayList<String> nodeVals = new ArrayList<>(Arrays.asList(data.split(",")));
-        TreeNode root = deserialize(nodeVals);
-        return root;
-    }
-
-    private static TreeNode deserialize(ArrayList<String> nodeVals) {
-        if (nodeVals.size() == 0) {
-            return null;
-        }
-        String value = nodeVals.get(0);
-        nodeVals.remove(0);
-        TreeNode node = value.equals("null") ? null : new TreeNode(Integer.parseInt(value));
-
-        if (node != null) {
-            node.left = deserialize(nodeVals);
-            node.right = deserialize(nodeVals);
-        }
-
-        return node;
-    }
 }

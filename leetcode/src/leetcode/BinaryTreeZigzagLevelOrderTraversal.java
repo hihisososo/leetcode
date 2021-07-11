@@ -1,10 +1,16 @@
 package leetcode;
 
-import java.util.*;
+import common.TreeNode;
+import util.TreeUtil;
+
+import java.util.ArrayDeque;
+import java.util.ArrayList;
+import java.util.LinkedList;
+import java.util.List;
 
 public class BinaryTreeZigzagLevelOrderTraversal {
     public static void main(String[] args) {
-        TreeNode root = deserialize("3,9,null,null,20,15,null,null,7,null,null");
+        TreeNode root = TreeUtil.deserialize("3,9,null,null,20,15,null,null,7,null,null");
         System.out.println(new BinaryTreeZigzagLevelOrderTraversal().zigzagLevelOrder(root));
     }
 
@@ -47,46 +53,4 @@ public class BinaryTreeZigzagLevelOrderTraversal {
         traverseZigzag(newQueue, result, !isRight);
     }
 
-    public static TreeNode deserialize(String data) {
-        ArrayList<String> nodeVals = new ArrayList<>(Arrays.asList(data.split(",")));
-        TreeNode root = deserialize(nodeVals);
-        return root;
-    }
-
-
-    private static TreeNode deserialize(ArrayList<String> nodeVals) {
-        if (nodeVals.size() == 0) {
-            return null;
-        }
-        String value = nodeVals.get(0);
-        nodeVals.remove(0);
-        TreeNode node = value.equals("null") ? null : new TreeNode(Integer.parseInt(value));
-
-        if (node != null) {
-            node.left = deserialize(nodeVals);
-            node.right = deserialize(nodeVals);
-        }
-
-        return node;
-    }
-
-
-    public static class TreeNode {
-        int val;
-        TreeNode left;
-        TreeNode right;
-
-        TreeNode() {
-        }
-
-        TreeNode(int val) {
-            this.val = val;
-        }
-
-        TreeNode(int val, TreeNode left, TreeNode right) {
-            this.val = val;
-            this.left = left;
-            this.right = right;
-        }
-    }
 }

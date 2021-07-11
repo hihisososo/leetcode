@@ -1,12 +1,12 @@
 package leetcode;
 
-import java.util.ArrayList;
-import java.util.Arrays;
+import common.TreeNode;
+import util.TreeUtil;
 
 public class MergeTwoBinaryTrees {
     public static void main(String[] args) {
-        TreeNode root1 = deserialize("1,3,5,null,null,null,2,null,null");
-        TreeNode root2 = deserialize("2,1,null,4,null,null,3,null,7,null,null");
+        TreeNode root1 = TreeUtil.deserialize("1,3,5,null,null,null,2,null,null");
+        TreeNode root2 = TreeUtil.deserialize("2,1,null,4,null,null,3,null,7,null,null");
         TreeNode result = new MergeTwoBinaryTrees().mergeTrees(root1, root2);
         System.out.println(result);
     }
@@ -30,45 +30,4 @@ public class MergeTwoBinaryTrees {
         return newNode;
     }
 
-    public static TreeNode deserialize(String data) {
-        ArrayList<String> nodeVals = new ArrayList<>(Arrays.asList(data.split(",")));
-        TreeNode root = deserialize(nodeVals);
-        return root;
-    }
-
-    private static TreeNode deserialize(ArrayList<String> nodeVals) {
-        if (nodeVals.size() == 0) {
-            return null;
-        }
-        String value = nodeVals.get(0);
-        nodeVals.remove(0);
-        TreeNode node = value.equals("null") ? null : new TreeNode(Integer.parseInt(value));
-
-        if (node != null) {
-            node.left = deserialize(nodeVals);
-            node.right = deserialize(nodeVals);
-        }
-
-        return node;
-    }
-
-
-    public static class TreeNode {
-        int val;
-        TreeNode left;
-        TreeNode right;
-
-        TreeNode() {
-        }
-
-        TreeNode(int val) {
-            this.val = val;
-        }
-
-        TreeNode(int val, TreeNode left, TreeNode right) {
-            this.val = val;
-            this.left = left;
-            this.right = right;
-        }
-    }
 }
