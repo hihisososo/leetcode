@@ -1,55 +1,70 @@
 package leetcode;
 
-import java.util.HashMap;
+import java.util.ArrayList;
 import java.util.HashSet;
+import java.util.List;
 
 public class CourseSchedule {
-	public static void main(String[] args) {
-		int numCourses = 3;
-		int[][] prerequisites = new int[][] { { 1, 0 } };
+    public static void main(String[] args) {
+        int numCourses = 5;
+        int[][] prerequisites = new int[][]{{1, 0}, {0, 1}};
 
-		System.out.println(new CourseSchedule().canFinish(numCourses, prerequisites));
-	}
+        System.out.println(new CourseSchedule().canFinish(numCourses, prerequisites));
+    }
 
-	public boolean canFinish(int numCourses, int[][] prerequisites) {
-		HashMap<Integer, HashSet<Integer>> valuesMap = new HashMap<>();
-		for (int i = 0; i < prerequisites.length; i++) {
-			if (prerequisites[i][0] < numCourses && prerequisites[i][1] >= numCourses) {
-				return false;
-			}
-			HashSet<Integer> values = null;
-			if (valuesMap.get(prerequisites[i][0]) != null) {
-				values = valuesMap.get(prerequisites[i][0]);
-			} else {
-				values = new HashSet<>();
-			}
-			values.add(prerequisites[i][1]);
-			valuesMap.put(prerequisites[i][0], values);
-		}
+    public boolean canFinish(int numCourses, int[][] prerequisites) {
+        Node[] nodes = new Node[numCourses];
+        for (int i = 0; i < numCourses; i++) {
+            nodes[i] = new Node(i);
+        }
 
-		HashSet<Integer> alreadyCheckSet = new HashSet<>();
-		for (int key : valuesMap.keySet()) {
-			HashSet<Integer> requireSet = new HashSet<>();
-			if (checkDuplicate(valuesMap, key, requireSet, alreadyCheckSet)) {
-				return false;
-			}
-		}
+        for (int i = 0; i < prerequisites.length; i++) {
+            int a = prerequisites[i][0];
+            int b = prerequisites[i][1];
+            nodes[b].nodes.add(nodes[a]);
+        }
 
-		return true;
+        return !hasCycle(nodes);
 
-	}
+    }
 
-	private boolean checkDuplicate(HashMap<Integer, HashSet<Integer>> valuesMap, int key, HashSet<Integer> checkSet, HashSet<Integer> alreadyCheckSet) {
-		if(alreadyCheckSet.contains(key)){
-			return false;
-		}else{
-			if(checkSet.contains(key)){
-				return true;
-			}else{
-				checkSet.addAll(valuesMap.get(key));
-			}
-		}
-		return false;
-	}
+    private boolean hasCycle(Node[] nodes) {
+        HashSet<Integer> memo = new HashSet<>();
+        for (int i = 0; i < nodes.length; i++) {
+            if (nodes[i].nodes.size() > 0) {
+                if (hasCycle(nodes[i], new boolean[nodes.length], memo)) {
+                    return true;
+                }
+            }
+        }
+        return false;
+    }
 
+    private boolean hasCycle(Node node, boolean[] visited, HashSet<Integer> memo) {
+        if (visited[node.val] == true) {
+            return true;
+        }
+        if(memo.contains(node.val)){
+            return false;
+        }
+        visited[node.val] = true;
+        memo.add(node.val);
+        for (int i = 0; i < node.nodes.size(); i++) {
+            if (hasCycle(node.nodes.get(i), visited, memo)) {
+                return true;
+            }
+        }
+        visited[node.val] = false;
+        return false;
+    }
+
+    class Node {
+        private int val;
+        private List<Node> nodes;
+
+        public Node(int val) {
+            this.val = val;
+            this.nodes = new ArrayList<>();
+        }
+    }
 }
