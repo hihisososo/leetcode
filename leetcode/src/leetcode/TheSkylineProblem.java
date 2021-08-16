@@ -9,21 +9,30 @@ public class TheSkylineProblem {
     }
 
     public List<List<Integer>> getSkyline(int[][] buildings) {
-        /*PriorityQueue<Building> queue = new PriorityQueue<>(new Comparator<Building>() {
+        PriorityQueue<Building> startQueue = new PriorityQueue<>(new Comparator<Building>() {
             @Override
             public int compare(Building o1, Building o2) {
-                if (o1.start == o2.start) {
-                    return o2.height - o1.height;
-                }
+                return o1.start - o2.start;
+            }
+        });
+        PriorityQueue<Building> endQueue = new PriorityQueue<>(new Comparator<Building>() {
+            @Override
+            public int compare(Building o1, Building o2) {
                 return o1.end - o2.end;
             }
-        });*/
+        });
+        PriorityQueue<Building> heightQueue = new PriorityQueue<>(new Comparator<Building>() {
+            @Override
+            public int compare(Building o1, Building o2) {
+                return o2.height - o1.height;
+            }
+        });
 
-        PriorityQueue<Integer> endQueue = new PriorityQueue<>();
-        PriorityQueue<Integer> heightQueue = new PriorityQueue<>();
         HashSet<Integer> changePointSet = new HashSet<>();
         for (int i = 0; i < buildings.length; i++) {
-            queue.add(new Building(buildings[i][0], buildings[i][1], buildings[i][2]));
+            Building building = new Building(buildings[i][0], buildings[i][1], buildings[i][2]);
+            startQueue.add(building);
+            endQueue.add(building);
             changePointSet.add(buildings[i][0]);
             changePointSet.add(buildings[i][1]);
         }
@@ -31,25 +40,46 @@ public class TheSkylineProblem {
         Collections.sort(changePoints);
 
         List<List<Integer>> results = new ArrayList<List<Integer>>();
-        int max = 0;
+        int lastVal = -1;
         for (int i = 0; i < changePoints.size(); i++) {
             int changeIdx = changePoints.get(i);
-            while (!queue.isEmpty()) {
-                if (queue.peek().end <= changeIdx) {
-                    queue.poll();
+
+            while (!startQueue.isEmpty()) {
+                Building peek = startQueue.peek();
+                if (peek.start <= changeIdx) {
+                    heightQueue.add(startQueue.poll());
                 } else {
-                    List<Integer> point = new ArrayList<>();
-                    point.add(changeIdx);
-                    point.add(queue.peek().height);
-                    results.add(point);
                     break;
                 }
             }
+
+            while (!endQueue.isEmpty()) {
+                Building peek = endQueue.peek();
+                if (peek.end <= changeIdx) {
+                    heightQueue.remove(endQueue.poll());
+                } else {
+                    break;
+                }
+            }
+
+            int peekHeight = heightQueue.isEmpty() ? 0 : heightQueue.peek().height;
+            if (checkLastVal(lastVal, peekHeight)) {
+                List<Integer> point = new ArrayList<>();
+                point.add(changeIdx);
+                point.add(peekHeight);
+                lastVal = peekHeight;
+                results.add(point);
+            }
+
         }
         return results;
     }
 
-    /*class Building {
+    private boolean checkLastVal(int lastVal, int peekHeight) {
+        return lastVal != peekHeight;
+    }
+
+    class Building {
         int start;
         int end;
         int height;
@@ -59,7 +89,5 @@ public class TheSkylineProblem {
             this.end = end;
             this.height = height;
         }
-    }*/
-
-
+    }
 }
