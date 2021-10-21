@@ -20,6 +20,7 @@ public class WiggleSortII {
         Deque<Integer> maxQueue = new LinkedList<Integer>();
 
         for (int i = maxidx - 1; i >= 0; i--) {
+
             minQueue.add(nums[i]);
         }
         for (int i = (nums.length - 1); i >= maxidx; i--) {
