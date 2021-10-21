@@ -16,6 +16,7 @@ public class WiggleSortII {
         if (nums.length % 2 != 0) {
             maxidx++;
         }
+
         Deque<Integer> minQueue = new LinkedList<Integer>();
         Deque<Integer> maxQueue = new LinkedList<Integer>();
 
