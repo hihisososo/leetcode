@@ -29,35 +29,45 @@ public class OddEvenLinkedList {
     }
 
     public ListNode oddEvenList(ListNode head) {
-        ListNode lastNode = findLastNode(head);
-        if (head == lastNode) {
-            return head;
+        if(head == null){
+            return null;
         }
-        ListNode previous = head;
-        ListNode node = head.next;
-        ListNode end = lastNode;
-        boolean isEven = true;
-        while (node != end) {
+
+        ListNode newLeft = null;
+        ListNode newLeftHead = null;
+        ListNode newRight = null;
+        ListNode newRightHead = null;
+
+        ListNode node = head;
+        boolean isEven = false;
+        while (node != null) {
+            ListNode nextNode;
+            nextNode = node.next;
+            node.next = null;
+            ListNode targetNode = isEven ? newRight : newLeft;
             if (isEven) {
-                previous.next = node.next;
-                node.next = null;
-                lastNode.next = node;
-                lastNode = node;
-                node = previous.next;
+                if (newRight == null) {
+                    newRight = node;
+                    newRightHead = node;
+                } else {
+                    newRight.next = node;
+                    newRight = node;
+                }
             } else {
-                previous = node;
-                node = node.next;
+                if (newLeft == null) {
+                    newLeft = node;
+                    newLeftHead = node;
+                } else {
+                    newLeft.next = node;
+                    newLeft = node;
+                }
             }
+            node = nextNode;
             isEven = !isEven;
         }
-        return head;
-    }
+        ListNode newHead = newLeftHead;
+        newLeft.next = newRightHead;
 
-    private ListNode findLastNode(ListNode head) {
-        ListNode node = head;
-        while (node.next != null) {
-            node = node.next;
-        }
-        return node;
+        return newHead;
     }
 }
