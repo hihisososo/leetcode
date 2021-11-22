@@ -1,6 +1,7 @@
 package leetcode;
 
-public class LongestIncreasingSubsequence {
+public class
+LongestIncreasingSubsequence {
 	public static void main(String[] args) {
 		int[] nums = new int[] { 0, 1, 0, 3, 2, 3 };
 		System.out.println(new LongestIncreasingSubsequence().lengthOfLIS(nums));
