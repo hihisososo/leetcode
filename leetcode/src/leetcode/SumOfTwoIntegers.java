@@ -2,8 +2,8 @@ package leetcode;
 
 public class SumOfTwoIntegers {
     public static void main(String[] args) {
-        int a = 2;
-        int b = 3;
+        int a = 1;
+        int b = 2;
         System.out.println(new SumOfTwoIntegers().getSum(a, b));
     }
 
@@ -11,67 +11,67 @@ public class SumOfTwoIntegers {
         String aBs = Integer.toBinaryString(a);
         String bBs = Integer.toBinaryString(b);
 
-        int length = aBs.length() > bBs.length() ? aBs.length()
-                : bBs.length();
-        if (aBs.length() > bBs.length()) {
-            while (length > bBs.length()) {
-                bBs = "0" + bBs;
-            }
-        } else {
-            while (length > aBs.length()) {
-                aBs = "0" + aBs;
-            }
-        }
+        aBs = paddingZero(aBs, 32);
+        bBs = paddingZero(bBs, 32);
 
         boolean carry = false;
         StringBuffer sb = new StringBuffer();
-        for (int i = length - 1; i >= 0; i--) {
-            char aChar = getChar(i, aBs);
-            char bChar = getChar(i, bBs);
-
-            if (aChar == '1' && bChar == '1') {
-                if (carry) {
-                    sb.append("1");
-                } else {
-                    sb.append("0");
-                }
-                carry = true;
-            } else if ((aChar == '1' && bChar == '0') || (aChar == '0' && bChar == '1')) {
-                if (carry) {
-                    carry = true;
-                    sb.append("0");
-                } else {
-                    carry = false;
-                    sb.append("1");
-                }
-            } else {
-                if (carry) {
-                    sb.append("1");
-                } else {
-                    sb.append("0");
-                }
-                carry = false;
+        for (int i = aBs.length() - 1; i >= 0; i--) {
+            sb.append(getSumStr(aBs.charAt(i), bBs.charAt(i), carry));
+            carry = isCarry(aBs.charAt(i), bBs.charAt(i), carry);
+        }
+        String result = sb.reverse().toString().substring(0, 32);
+        if (result.startsWith("1")) {
+            result = result.substring(1);
+            StringBuffer reSb = new StringBuffer();
+            for (int i = result.length() - 1; i >= 0; i--) {
+                reSb.append(result.charAt(i) == '1' ? '0' : '1');
             }
+            return -(Integer.parseInt(reSb.reverse().toString(), 2) + 1);
+        } else {
+            return Integer.parseInt(result, 2);
+        }
+
+    }
+
+    private boolean isCarry(char charA, char charB, boolean carry) {
+        int cnt = 0;
+        if (charA == '1') {
+            cnt++;
+        }
+        if (charB == '1') {
+            cnt++;
         }
         if (carry) {
-            sb.append("1");
-        }
-        String str = sb.reverse().toString();
-        System.out.println(str.length());
-        if(str.length() > 32){
-            str = str.substring(1);
-        }
-        if(str.length() == 32 && str.startsWith("1")){
-            str = "-" + str;
-        }
-        return Integer.parseInt(str, 2);
-    }
-
-    private char getChar(int i, String s) {
-        if (s.length() <= i) {
-            return '0';
+            cnt++;
         }
 
-        return s.charAt(i);
+        return cnt > 1;
     }
+
+    private int getSumStr(char charA, char charB, boolean carry) {
+        int cnt = 0;
+        if (charA == '1') {
+            cnt++;
+        }
+        if (charB == '1') {
+            cnt++;
+        }
+        if (carry) {
+            cnt++;
+        }
+
+        return cnt % 2 == 0 ? 0 : 1;
+    }
+
+    private void twoComplement(int a, int b) {
+    }
+
+    private String paddingZero(String str, int length) {
+        while (str.length() < length) {
+            str = "0" + str;
+        }
+        return str;
+    }
+
 }
