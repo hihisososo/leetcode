@@ -19,7 +19,6 @@ public class RandomizedSet {
     private Random random;
     private HashMap<Integer, Integer> map;
     private ArrayList<Integer> list;
-    private int offSet = 0;
 
     public RandomizedSet() {
         random = new Random();
@@ -42,9 +41,10 @@ public class RandomizedSet {
         }
 
         int idx = map.get(val);
-        list.remove(idx + offSet);
+        list.set(idx, list.get(list.size() - 1));
+        map.put(list.get(list.size() - 1), idx);
+        list.remove(list.size() - 1);
         map.remove(val);
-        offSet--;
         return true;
     }
 
