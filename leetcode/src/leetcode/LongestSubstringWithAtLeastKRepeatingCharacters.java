@@ -6,61 +6,67 @@ import java.util.PriorityQueue;
 
 public class LongestSubstringWithAtLeastKRepeatingCharacters {
     public static void main(String[] args) {
-        String s = "ababbc";
+        String s = "";
         int k = 2;
         System.out.println(new LongestSubstringWithAtLeastKRepeatingCharacters().longestSubstring(s, k));
     }
 
     public int longestSubstring(String s, int k) {
-        Integer kCnt = 0;
-        HashMap<Character, Integer> map = new HashMap<>();
+        HashMap<Character, Integer> charIntMap = new HashMap<>();
+        int kCnt = 0;
         for (int i = 0; i < s.length(); i++) {
             Character c = s.charAt(i);
-            if(map.containsKey(c)){
-                map.put(c, map.get(c) + 1);
-            }else{
-                map.put(c, 1);
-            }
-
-            if(map.get(c) == k){
+            charIntMap.putIfAbsent(c, 0);
+            charIntMap.put(c,charIntMap.get(c)+1);
+            if(charIntMap.get(c) == k){
                 kCnt++;
             }
         }
-
         if(kCnt == 0){
             return 0;
         }
 
         int maxLen = 0;
-        for (int i = -1; i < s.length(); i++) {
-            kCnt = getInteger(s, k, kCnt, map, i);
-            if(map.keySet().size() == kCnt){
-                maxLen = Math.max(maxLen, s.length() - i - 1);
+        for (int i = 0; i < s.length(); i++) {
+            if(i != 0){
+                if(isDecreaseKcnt(s.charAt(i-1), charIntMap, k)){
+                    kCnt--;
+                }
+                decreaseMap(s.charAt(i-1),charIntMap);
             }
-            HashMap<Character, Integer> targetMap = new HashMap<>(map);
-            for (int j = s.length() - 1; j > i; j--) {
-                kCnt = getInteger(s, k, kCnt, targetMap, j);
-                if(targetMap.keySet().size() == kCnt){
-                    maxLen = Math.max(maxLen, j - i + 1);
+            HashMap<Character, Integer> copyMap = new HashMap<Character, Integer>(charIntMap);
+            int copyKcnt = kCnt;
+            for (int j = s.length(); j >= i ; j--) {
+                if(j != s.length()){
+                    if(isDecreaseKcnt(s.charAt(j), copyMap, k)){
+                        copyKcnt--;
+                    }
+                    decreaseMap(s.charAt(j),copyMap);
+                }
+                if(copyKcnt == copyMap.keySet().size()){
+                  maxLen = Math.max(maxLen, j - i);
                 }
             }
         }
+
         return maxLen;
     }
 
-    private Integer getInteger(String s, int k, Integer kCnt, HashMap<Character, Integer> map, int i) {
-        if(i < 0){
-            return kCnt;
+    private void decreaseMap(char c, HashMap<Character, Integer> charIntMap) {
+        charIntMap.put(c,charIntMap.get(c) - 1);
+        if(charIntMap.get(c) == 0){
+            charIntMap.remove(c);
         }
-        Character targetC = s.charAt(i);
-        if(map.get(targetC) == k){
-            kCnt--;
-        }
-        map.put(targetC, map.get(targetC) - 1);
-        if(map.get(targetC) == 0){
-            map.remove(targetC);
-        }
-        return kCnt;
+    }
+
+    private boolean isDecreaseKcnt(char c, HashMap<Character, Integer> charIntMap, int k) {
+        return charIntMap.get(c) == k;
+    }
+
+    private HashMap<Character, Integer> makeHashMap(String s, int k) {
+        HashMap<Character, Integer> map = new HashMap<>();
+
+        return map;
     }
 
 }
