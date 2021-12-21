@@ -6,7 +6,7 @@ import java.util.List;
 
 public class VerifyPreorderSequenceInBinarySearchTree {
     public static void main(String[] args) {
-        int[] preorder = new int[]{1, 3, 2};
+        int[] preorder = new int[]{5,2,6,1,3};
         System.out.println(new VerifyPreorderSequenceInBinarySearchTree().verifyPreorder(preorder));
     }
 
@@ -24,20 +24,19 @@ public class VerifyPreorderSequenceInBinarySearchTree {
     private void traverse(int smaller, int larger, List<Integer> preorderList, int parent) {
         if (!preorderList.isEmpty()) {
             int currVal = preorderList.get(0);
-            if (!(currVal > larger && currVal < smaller)) {
-                return;
+            if (currVal > larger && currVal < smaller && currVal < parent) {
+                preorderList.remove(0);
+                traverse(parent, larger, preorderList, currVal);
             }
-            preorderList.remove(0);
-            traverse(parent, larger, preorderList, currVal);
         }
 
         if (!preorderList.isEmpty()) {
             int currVal = preorderList.get(0);
-            if (!(currVal > larger && currVal < smaller)) {
-                return;
+            if (currVal > larger && currVal < smaller && currVal > parent) {
+                preorderList.remove(0);
+                traverse(smaller, parent, preorderList, currVal);
             }
-            preorderList.remove(0);
-            traverse(smaller, currVal, preorderList, currVal);
+
         }
     }
 
