@@ -6,20 +6,19 @@ public class PaintFence {
     }
 
     public int numWays(int n, int k) {
-        return findNumWays(n, k, -1, -1, 0);
-    }
-
-    private int findNumWays(int n, int k, int prevCol1, int prevCol2, int length) {
-        if (length == n) {
-            return 1;
+        if (n == 1) {
+            return k;
+        }
+        if (n == 2) {
+            return k * k;
         }
 
-        int sum = 0;
-        for (int i = 0; i < k; i++) {
-            if (prevCol1 != prevCol2 || prevCol2 != i) {
-                sum += findNumWays(n, k, i, prevCol1, length+1);
-            }
+        int[] dp = new int[n];
+        dp[0] = k;
+        dp[1] = k * k;
+        for (int i = 2; i < n; i++) {
+            dp[i] = dp[i - 1] * (k - 1) + dp[i - 2] * (k - 1);
         }
-        return sum;
+        return dp[n - 1];
     }
 }
