@@ -19,7 +19,7 @@ public class WallsAndGates {
     public void wallsAndGates(int[][] rooms) {
         for (int row = 0; row < rooms.length; row++) {
             for (int col = 0; col < rooms[row].length; col++) {
-                if (rooms[row][col] == -1 || rooms[row][col] == 0) {
+                if (rooms[row][col] != 0) {
                     continue;
                 }
                 boolean[][] visit = new boolean[rooms.length][rooms[0].length];
@@ -27,7 +27,6 @@ public class WallsAndGates {
                 Queue<Pair<Integer, Integer>> nextQueue = new LinkedList<>();
                 queue.add(new Pair<>(row, col));
                 int distance = 0;
-                boolean isFind = false;
 
                 while (!queue.isEmpty() || !nextQueue.isEmpty()) {
                     queue.addAll(nextQueue);
@@ -36,26 +35,18 @@ public class WallsAndGates {
                         Pair<Integer, Integer> point = queue.poll();
                         int r = point.getKey();
                         int c = point.getValue();
-                        if (r < 0 || r >= rooms.length || c < 0 || c >= rooms[0].length || visit[r][c] || rooms[r][c] == -1) {
+                        if (r < 0 || r >= rooms.length || c < 0 || c >= rooms[0].length || visit[r][c] || rooms[r][c] == -1 || rooms[r][c] < distance) {
                             continue;
                         }
-                        if (rooms[r][c] == 0) {
-                            rooms[row][col] = distance;
-                            isFind = true;
-                            break;
-                        }
+                        rooms[r][c] = distance;
 
-                        visit[point.getKey()][point.getValue()] = true;
+                        visit[r][c] = true;
                         nextQueue.add(new Pair<>(r - 1, c));
                         nextQueue.add(new Pair<>(r, c - 1));
                         nextQueue.add(new Pair<>(r + 1, c));
                         nextQueue.add(new Pair<>(r, c + 1));
                     }
                     distance++;
-
-                    if (isFind) {
-                        break;
-                    }
                 }
             }
         }
