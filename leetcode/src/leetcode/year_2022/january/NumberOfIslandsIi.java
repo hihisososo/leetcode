@@ -62,11 +62,16 @@ public class NumberOfIslandsIi {
                 islandMergeList.add(newIsland);
             }
 
+            List<HashSet> removes = new ArrayList<HashSet>();
             for (int j = 0; j < islandMergeList.size(); j++) {
                 if (islandMergeList.get(j).isEmpty()) {
-                    islandMergeList.remove(j);
+                    removes.add(islandMergeList.get(j));
                 }
             }
+            for(HashSet target : removes){
+                islandMergeList.remove(target);
+            }
+
             pointIslandMap.put(newPoint, islandNum);
             result.add(islandMergeList.size());
         }
