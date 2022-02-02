@@ -1,13 +1,12 @@
 package leetcode.year_2022.february;
 
-import java.util.ArrayList;
-import java.util.LinkedList;
-import java.util.List;
-import java.util.Queue;
+import java.util.*;
 
 public class ShortestDistanceFromAllBuildings {
     public static void main(String[] args) {
-        int[][] grid = new int[][]{{1, 0, 2, 0, 1}, {0, 0, 0, 0, 0}, {0, 0, 1, 0, 0}};
+//        int[][] grid = new int[][]{{1, 0, 2, 0, 1}, {0, 0, 0, 0, 0}, {0, 0, 1, 0, 0}};
+//        int[][] grid = new int[][]{{1, 0}};
+        int[][] grid = new int[][]{{1}};
         System.out.println(new ShortestDistanceFromAllBuildings().shortestDistance(grid));
     }
 
@@ -20,52 +19,60 @@ public class ShortestDistanceFromAllBuildings {
                 }
             }
         }
-        if (!isAllBuildingTraverse(points, grid)) {
-            return -1;
+
+        boolean[][][] visited = new boolean[grid.length][grid[0].length][points.size()];
+        int[][] distanceGrid = new int[grid.length][grid[0].length];
+        Queue<Distance> queue = new LinkedList<>();
+        for (int i = 0; i < points.size(); i++) {
+            queue.add(new Distance(points.get(i) / grid.length, points.get(i) % grid.length, i, 0));
         }
-
-        return shortestDistance(points, grid);
-    }
-
-    private int shortestDistance(List<Integer> points, int[][] grid) {
-        Queue<Integer> queue = new LinkedList<>();
-        boolean[][] visit = new boolean[grid.length][grid[0].length];
-        for (int p : points) {
-            queue.add(p);
-        }
-
         while (!queue.isEmpty()) {
-            int p = queue.poll();
-            int row = p / grid.length;
-            int col = p % grid.length;
-            if()
+            Distance poll = queue.poll();
+            if (poll.row < 0 || poll.row >= grid.length || poll.col < 0 || poll.col >= grid[0].length || visited[poll.row][poll.col][poll.originPoint] || grid[poll.row][poll.col] == 2) {
+                continue;
+            }
+
+            visited[poll.row][poll.col][poll.originPoint] = true;
+            distanceGrid[poll.row][poll.col] += poll.distance;
+            if (grid[poll.row][poll.col] == 1 && poll.distance == 0) {
+                continue;
+            }
+            queue.add(new Distance(poll.row + 1, poll.col, poll.originPoint, poll.distance+1));
+            queue.add(new Distance(poll.row - 1, poll.col, poll.originPoint, poll.distance+1));
+            queue.add(new Distance(poll.row, poll.col + 1, poll.originPoint, poll.distance+1));
+            queue.add(new Distance(poll.row, poll.col - 1, poll.originPoint, poll.distance+1));
+
         }
-    }
 
-    private boolean isAllBuildingTraverse(List<Integer> points, int[][] grid) {
-
-        int target = points.get(0);
-        boolean[][] visit = new boolean[grid.length][grid[0].length];
-        int row = target / grid.length;
-        int col = target % grid.length;
-        dfs(row, col, grid, visit);
-        for (int p : points) {
-            if (!visit[p / grid.length][p % grid.length]) {
-                return false;
+        int minScore = Integer.MAX_VALUE;
+        for (int i = 0; i < visited.length; i++) {
+            for (int j = 0; j < visited[i].length; j++) {
+                boolean allVisit = true;
+                for (int k = 0; k < visited[i][j].length; k++) {
+                    if (!visited[i][j][k]) {
+                        allVisit = false;
+                        break;
+                    }
+                }
+                if (allVisit) {
+                    minScore = Math.min(minScore, distanceGrid[i][j]);
+                }
             }
         }
-        return true;
+        return minScore;
     }
 
-    private void dfs(int row, int col, int[][] grid, boolean[][] visit) {
-        if (row < 0 || row >= grid.length || col < 0 || col >= grid[0].length || visit[row][col] || grid[row][col] != 0) {
-            return;
-        }
-        visit[row][col] = true;
+    class Distance {
+        int row;
+        int col;
+        int originPoint;
+        int distance;
 
-        dfs(row + 1, col, grid, visit);
-        dfs(row - 1, col, grid, visit);
-        dfs(row, col + 1, grid, visit);
-        dfs(row, col - 1, grid, visit);
+        public Distance(int row, int col, int originPoint, int distance) {
+            this.row = row;
+            this.col = col;
+            this.originPoint = originPoint;
+            this.distance = distance;
+        }
     }
 }
