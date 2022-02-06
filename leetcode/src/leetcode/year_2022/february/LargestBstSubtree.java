@@ -12,7 +12,7 @@ public class LargestBstSubtree {
 //        TreeNode root = TreeBuilder.buildTree(new Integer[]{1,2});
 //        TreeNode root = TreeBuilder.buildTree(new Integer[]{2, 3, null, 1});
 //        TreeNode root = TreeBuilder.buildTree(new Integer[]{3,1,null,2,null,null,4});
-        TreeNode root = TreeBuilder.buildTree(new Integer[]{3,2,4,null,null,1});
+        TreeNode root = TreeBuilder.buildTree(new Integer[]{3, 2, 4, null, null, 1});
 
         System.out.println(new LargestBstSubtree().largestBSTSubtree(root));
     }
@@ -23,34 +23,29 @@ public class LargestBstSubtree {
             return 0;
         }
         length.set(1);
-        findLargeBstTree(root, Integer.MAX_VALUE, Integer.MIN_VALUE, length);
+        findLargeBstTree(root, length);
         return length.get();
     }
 
-    private int findLargeBstTree(TreeNode node, int smaller, int bigger, AtomicInteger length) {
+    private int findLargeBstTree(TreeNode node, AtomicInteger length) {
         if (node == null) {
             return 0;
         }
 
-        int left = findLargeBstTree(node.left, node.val, Integer.MIN_VALUE, length);
-        int right = findLargeBstTree(node.right, Integer.MAX_VALUE, node.val, length);
-        int sum = 0;
+        int left = findLargeBstTree(node.left, length);
+        int right = findLargeBstTree(node.right, length);
 
         if (left < 0 || right < 0) {
-            sum = -1;
-        } else if (left >= 0 && right >= 0) {
-            length.set(Math.max(length.get(), left + right + 1));
-            sum = left + right + 1;
-        } else if (left >= 0) {
-            length.set(Math.max(length.get(), left + 1));
-            sum = left + 1;
-        } else {
-            length.set(Math.max(length.get(), right + 1));
-            sum = right + 1;
-        }
-        if (node.val >= smaller || node.val <= bigger) {
             return -1;
+        } else {
+            if (node.left != null && node.left.val >= node.val) {
+                return -1;
+            }
+            if (node.right != null && node.right.val <= node.val) {
+                return -1;
+            }
+            length.set(Math.max(length.get(), left + right + 1));
+            return left + right + 1;
         }
-        return sum;
     }
 }
