@@ -10,13 +10,27 @@ import java.util.concurrent.ArrayBlockingQueue;
 
 public class SnakeGame {
     public static void main(String[] args) {
-        SnakeGame snakeGame = new SnakeGame(3, 2, new int[][]{{1, 2}, {0, 1}});
-        System.out.println(snakeGame.move("R")); // return 0
-        System.out.println(snakeGame.move("D")); // return 0
-        System.out.println(snakeGame.move("R")); // return 1, snake eats the first piece of food. The second piece of food appears at (0, 1).
-        System.out.println(snakeGame.move("U")); // return 1
-        System.out.println(snakeGame.move("L")); // return 2, snake eats the second food. No more food appears.
-        System.out.println(snakeGame.move("U")); // return -1, game over because snake collides with border
+        SnakeGame snakeGame = new SnakeGame(3, 3, new int[][]{{0, 1}, {0, 2}, {1, 2}, {2, 2}, {2, 1}, {2, 0}, {1, 0}});
+        System.out.println(snakeGame.move("R"));
+        System.out.println(snakeGame.move("R"));
+        System.out.println(snakeGame.move("D"));
+        System.out.println(snakeGame.move("D"));
+        System.out.println(snakeGame.move("L"));
+        System.out.println(snakeGame.move("L"));
+        System.out.println(snakeGame.move("U"));
+        System.out.println(snakeGame.move("U"));
+        System.out.println(snakeGame.move("R"));
+        System.out.println(snakeGame.move("R"));
+        System.out.println(snakeGame.move("D"));
+        System.out.println(snakeGame.move("D"));
+
+        System.out.println(snakeGame.move("L"));
+        System.out.println(snakeGame.move("L"));
+        System.out.println(snakeGame.move("U"));
+        System.out.println(snakeGame.move("R"));
+        System.out.println(snakeGame.move("U"));
+        System.out.println(snakeGame.move("L"));
+        System.out.println(snakeGame.move("D"));
     }
 
     int foodIdx;
@@ -57,7 +71,7 @@ public class SnakeGame {
 
     private int moveLeft() {
         currWidth--;
-        if (die()) {
+        if (dieWall()) {
             return -1;
         }
         return move();
@@ -65,7 +79,7 @@ public class SnakeGame {
 
     private int moveRight() {
         currWidth++;
-        if (die()) {
+        if (dieWall()) {
             return -1;
         }
         return move();
@@ -73,7 +87,7 @@ public class SnakeGame {
 
     private int moveDown() {
         currHeight++;
-        if (die()) {
+        if (dieWall()) {
             return -1;
         }
         return move();
@@ -81,15 +95,13 @@ public class SnakeGame {
 
     private int moveUp() {
         currHeight--;
-        if (die()) {
+        if (dieWall()) {
             return -1;
         }
         return move();
     }
 
     private int move() {
-        snake.addFirst(new Pair<>(currHeight, currWidth));
-        snakePointSet.add(new Pair<>(currHeight, currWidth));
         if (foodIdx < food.length && food[foodIdx][0] == currHeight && food[foodIdx][1] == currWidth) {
             foodIdx++;
         } else {
@@ -97,14 +109,34 @@ public class SnakeGame {
             snakePointSet.remove(tail);
             snake.removeLast();
         }
-
+        snake.addFirst(new Pair<>(currHeight, currWidth));
+        if (dieBody()) {
+            return -1;
+        }
+        snakePointSet.add(new Pair<>(currHeight, currWidth));
+        /*boolean[][] map = new boolean[height][width];
+        for (int i = 0; i < map.length; i++) {
+            System.out.println("");
+            for (int j = 0; j < width; j++) {
+                if(snakePointSet.contains(new Pair<>(i,j))){
+                    System.out.print(1);
+                }else{
+                    System.out.print(0);
+                }
+            }
+        }
+        System.out.println("");*/
         return foodIdx;
     }
 
-    private boolean die() {
+    private boolean dieWall() {
         if (currWidth < 0 || currWidth >= width || currHeight < 0 || currHeight >= height) {
             return true;
         }
-        return snakePointSet.contains(new Pair<>(currHeight, currWidth));
+        return false;
+    }
+
+    private boolean dieBody() {
+        return (snakePointSet.contains(new Pair<>(currHeight, currWidth)));
     }
 }
