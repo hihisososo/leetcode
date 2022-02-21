@@ -5,86 +5,56 @@ import java.util.*;
 public class RearrangeStringKDistanceApart {
     public static void main(String[] args) {
 //        String s = "aabbcc";int k = 3;
-//        String s = "aaadbbcc";int k = 2;
-        String s = "aaabc";int k = 3;
+        String s = "aaadbbcc";int k = 2;
+//        String s = "aaabc";int k = 3;
         System.out.println(new RearrangeStringKDistanceApart().rearrangeString(s, k));
     }
 
     public String rearrangeString(String s, int k) {
-        HashMap<Character, Integer> charIntMap = new HashMap<>();
-        char maxChar = 0;
-        int max = 0;
-        for (char c : s.toCharArray()) {
-            charIntMap.putIfAbsent(c, 0);
-            charIntMap.put(c, charIntMap.get(c) + 1);
-            if (max < charIntMap.get(c)) {
-                max = c;
-            }
-        }
-        if (max == 1) {
-            return s;
-        }
-        List<Character> remnant = new ArrayList<>();
-        for (char c : s.toCharArray()) {
-            if (charIntMap.get(c) == 1) {
-                charIntMap.remove(c);
-                remnant.add(c);
-            }
-        }
-        HashMap<Character, Integer> sortMap = sortByValue(charIntMap);
-        HashMap<Character, Integer> lastIdxMap = new HashMap<>();
-        List<Character> removeList = new ArrayList<>();
-        char[] result = new char[s.length()];
-        int curIdx = 0;
-        while (!sortMap.isEmpty()) {
-            for (Map.Entry<Character, Integer> e : sortMap.entrySet()) {
-                if (lastIdxMap.containsKey(e.getKey())) {
-                    int lastIdx = lastIdxMap.get(e.getKey());
-                    if (curIdx - lastIdx < k) {
-                        curIdx = lastIdx + k;
-                    }
-                }
-                if (curIdx >= s.length()) {
-                    return "";
-                }
-                result[curIdx] = e.getKey();
-                lastIdxMap.put(e.getKey(), curIdx);
-                curIdx++;
-                e.setValue(e.getValue() - 1);
-                if (e.getValue() == 0) {
-                    removeList.add(e.getKey());
-                }
-            }
-            for (Character c : removeList) {
-                sortMap.remove(c);
-            }
-            removeList.clear();
+        HashMap<Character, Integer> cntMap = new HashMap<>();
+        for (Character c : s.toCharArray()) {
+            cntMap.putIfAbsent(c, 0);
+            cntMap.put(c, cntMap.get(c) + 1);
         }
 
-        for (int i = 0; i < result.length; i++) {
-            if (result[i] == 0) {
-                result[i] = remnant.get(0);
-                remnant.remove(0);
-            }
-        }
-        return new String(result);
-    }
-
-    public HashMap<Character, Integer> sortByValue(HashMap<Character, Integer> hm) {
-        List<Map.Entry<Character, Integer>> list =
-                new LinkedList<Map.Entry<Character, Integer>>(hm.entrySet());
-
-        Collections.sort(list, new Comparator<Map.Entry<Character, Integer>>() {
-            public int compare(Map.Entry<Character, Integer> o1,
-                               Map.Entry<Character, Integer> o2) {
-                return -(o1.getValue()).compareTo(o2.getValue());
+        PriorityQueue<Map.Entry<Character, Integer>> cntQueue = new PriorityQueue<>(new Comparator<Map.Entry<Character, Integer>>() {
+            @Override
+            public int compare(Map.Entry<Character, Integer> o1, Map.Entry<Character, Integer> o2) {
+                return o1.getValue() - o2.getValue();
             }
         });
+        PriorityQueue<Map.Entry<Character, Integer>> waitQueue = new PriorityQueue<>();
 
-        HashMap<Character, Integer> temp = new LinkedHashMap<Character, Integer>();
-        for (Map.Entry<Character, Integer> aa : list) {
-            temp.put(aa.getKey(), aa.getValue());
+        for (Map.Entry<Character, Integer> e : cntMap.entrySet()) {
+            cntQueue.add(e);
         }
-        return temp;
+
+        StringBuffer result = new StringBuffer();
+        while (!cntQueue.isEmpty()) {
+            Map.Entry<Character, Integer> poll = cntQueue.poll();
+            result.append(poll.getKey());
+            poll.setValue(poll.getValue() - 1);
+            if (poll.getValue() == 0) {
+                cntQueue.remove(poll);
+            } else {
+                waitQueue.add(new AbstractMap.SimpleEntry<>(poll.getKey(), result.length() - 1));
+            }
+
+            Iterator<Map.Entry<Character, Integer>> iter = waitQueue.iterator();
+            while (iter.hasNext()) {
+                Map.Entry<Character, Integer> wq = iter.next();
+                if (result.length() - wq.getValue() == k) {
+                    cntQueue.offer(wq);
+                    waitQueue.remove(wq);
+                }
+            }
+        }
+
+        if (!waitQueue.isEmpty()) {
+            return "";
+        } else {
+            return result.toString();
+        }
+
     }
 }
