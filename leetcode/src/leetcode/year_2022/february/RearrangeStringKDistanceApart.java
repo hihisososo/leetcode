@@ -5,8 +5,9 @@ import java.util.*;
 public class RearrangeStringKDistanceApart {
     public static void main(String[] args) {
 //        String s = "aabbcc";int k = 3;
-        String s = "aaadbbcc";int k = 2;
+//        String s = "aaadbbcc";int k = 2;
 //        String s = "aaabc";int k = 3;
+        String s = "aa"; int k = 0;
         System.out.println(new RearrangeStringKDistanceApart().rearrangeString(s, k));
     }
 
@@ -20,10 +21,11 @@ public class RearrangeStringKDistanceApart {
         PriorityQueue<Map.Entry<Character, Integer>> cntQueue = new PriorityQueue<>(new Comparator<Map.Entry<Character, Integer>>() {
             @Override
             public int compare(Map.Entry<Character, Integer> o1, Map.Entry<Character, Integer> o2) {
-                return o1.getValue() - o2.getValue();
+                return o2.getValue() - o1.getValue();
             }
         });
-        PriorityQueue<Map.Entry<Character, Integer>> waitQueue = new PriorityQueue<>();
+        Queue<Map.Entry<Character, Integer>> waitQueue = new LinkedList<>();
+        Queue<Map.Entry<Character, Integer>> tempQueue = new LinkedList<>();
 
         for (Map.Entry<Character, Integer> e : cntMap.entrySet()) {
             cntQueue.add(e);
@@ -37,16 +39,19 @@ public class RearrangeStringKDistanceApart {
             if (poll.getValue() == 0) {
                 cntQueue.remove(poll);
             } else {
-                waitQueue.add(new AbstractMap.SimpleEntry<>(poll.getKey(), result.length() - 1));
+                waitQueue.add(poll);
             }
 
-            Iterator<Map.Entry<Character, Integer>> iter = waitQueue.iterator();
-            while (iter.hasNext()) {
-                Map.Entry<Character, Integer> wq = iter.next();
-                if (result.length() - wq.getValue() == k) {
+            while (!waitQueue.isEmpty()) {
+                Map.Entry<Character, Integer> wq = waitQueue.poll();
+                if (result.length() - result.lastIndexOf(String.valueOf(wq.getKey())) >= k) {
                     cntQueue.offer(wq);
-                    waitQueue.remove(wq);
+                }else{
+                    tempQueue.add(wq);
                 }
+            }
+            while(!tempQueue.isEmpty()){
+                waitQueue.add(tempQueue.poll());
             }
         }
 
