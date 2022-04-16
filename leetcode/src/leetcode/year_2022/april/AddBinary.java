@@ -1,35 +1,43 @@
 package leetcode.year_2022.april;
 
-import java.util.Arrays;
-import java.util.Iterator;
-
 public class AddBinary {
 
   public static void main(String[] args) {
-
+    System.out.println(new AddBinary().addBinary("1010", "1011"));
+    System.out.println(new AddBinary().addBinary("11", "1"));
+    System.out.println(new AddBinary().addBinary("", ""));
   }
 
   public String addBinary(String a, String b) {
-    Iterator<Character> aReverseIter = Arrays.asList(
-        new StringBuilder(a).reverse().toString().toCharArray()).iterator();
-    Iterator<Character> bReverseIter = Arrays.asList(
-        new StringBuilder(b).reverse().toString().toCharArray()).iterator();
-    StringBuilder result = new StringBuilder();
+    int maxIdx = Math.max(a.length(), b.length());
+    a = addZero(a, maxIdx);
+    b = addZero(b, maxIdx);
 
-    for (aReverseIter.hasNext() && bReverseIter.hasNext()) {
-      boolean carry = false;
-      int aChar = Integer.parseInt(aReverseIter.next());
-      int bChar = Integer.parseInt(bReverseIter.next());
-      int sum = aChar + bChar;
+    int carry = 0;
+    String result = "";
+    for (int i = maxIdx - 1; i >= 0; i--) {
+      int sum = getInt(a, i) + getInt(b, i) + carry;
 
-      if(aChar == '1' && bChar == '1'){
-        carry =true;
-        if(carry){
-          result.append("1");
-        }else{
-          result.append("0");
-        }
-      }
+      carry = sum / 2;
+      result = (sum % 2) + result;
     }
+    if (carry == 1) {
+      result = "1" + result;
+    }
+    return result;
+  }
+
+  private String addZero(String s, int maxIdx) {
+    while (s.length() < maxIdx) {
+      s = "0" + s;
+    }
+    return s;
+  }
+
+  private int getInt(String s, int i) {
+    if (i >= s.length()) {
+      return 0;
+    }
+    return s.charAt(i) == '1' ? 1 : 0;
   }
 }
