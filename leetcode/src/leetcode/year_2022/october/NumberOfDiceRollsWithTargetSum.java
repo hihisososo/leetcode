@@ -7,7 +7,7 @@ public class NumberOfDiceRollsWithTargetSum {
         System.out.println(new NumberOfDiceRollsWithTargetSum().numRollsToTarget(1, 6, 3));
         System.out.println(new NumberOfDiceRollsWithTargetSum().numRollsToTarget(2, 6, 7));
         System.out.println(new NumberOfDiceRollsWithTargetSum().numRollsToTarget(2, 2, 7));
-        System.out.println(new NumberOfDiceRollsWithTargetSum().numRollsToTarget(5, 5, 20));
+        System.out.println(new NumberOfDiceRollsWithTargetSum().numRollsToTarget(30, 30, 500));
     }
 
     public int numRollsToTarget(int n, int k, int target) {
@@ -23,8 +23,6 @@ public class NumberOfDiceRollsWithTargetSum {
         for (int i = 0; i < k && i < target; i++) {
             prevNums[i] = 1;
         }
-        System.out.println(Arrays.toString(prevNums));
-
         for (int i = 1; i < n; i++) {
             for (int j = i; j < target; j++) {
                 int prevLeftIdx = j - k < 0 ? 0 : j - k;
@@ -32,12 +30,8 @@ public class NumberOfDiceRollsWithTargetSum {
                 for (int l = prevLeftIdx; l < j; l++) {
                     sum = ((sum + prevNums[l]) % 1000000007);
                 }
-                if (j + 1 <= k) {
-                    sum++;
-                }
                 currNums[j] = sum;
             }
-            System.out.println(Arrays.toString(currNums));
             prevNums = currNums;
             currNums = new int[target];
         }
