@@ -1,6 +1,10 @@
 package leetcode.year_2022.november;
 
-import java.util.*;
+import java.util.Arrays;
+import java.util.HashMap;
+import java.util.Map;
+import java.util.Set;
+import java.util.stream.Collectors;
 
 public class MinimumGeneticMutation {
     public static void main(String[] args) {
@@ -9,36 +13,36 @@ public class MinimumGeneticMutation {
         System.out.println(new MinimumGeneticMutation().minMutation("AAAAACCC", "AACCCCCC", new String[]{"AAAACCCC", "AAACCCCC", "AACCCCCC"}));
     }
 
+    private char[] mutations = new char[]{'A', 'C', 'G', 'T'};
+
     public int minMutation(String start, String end, String[] bank) {
-        Set<String> validSet = new HashSet<>();
-        for (String b : bank) {
-            validSet.add(sort(b));
-        }
-
-        if (!validSet.contains(sort(end))) {
-            return -1;
-        }
-
-        Map<Character, Integer> startCntMap = new HashMap<>();
-        for (int i = 0; i < start.length(); i++) {
-            startCntMap.putIfAbsent(start.charAt(i), 0);
-            startCntMap.put(start.charAt(i), startCntMap.get(start.charAt(i)) + 1);
-        }
-
-        int diffCount = 0;
-        for (int i = 0; i < end.length(); i++) {
-            if (start.charAt(i) != end.charAt(i)) {
-                diffCount++;
-            }
-        }
-
-        return diffCount == 0 ? -1 : diffCount;
+        return findMinMutation(start, end, 0, Arrays.stream(bank).collect(Collectors.toSet()), new HashMap<String, Integer>());
     }
 
-    private String sort(String b) {
+    private int findMinMutation(String curr, String end, int cost, Set<String> bankSet, Map<String, Integer> visit) {
+        if (visit.containsKey(curr) && visit.get(curr) <= cost) {
+            return -1;
+        } else {
+            visit.put(curr, cost);
+        }
+        if (cost > 0 && !bankSet.contains(curr)) {
+            return -1;
+        } else if (curr.equals(end)) {
+            return cost;
+        }
 
-        char[] bankChars = b.toCharArray();
-        Arrays.sort(bankChars);
-        return new String(bankChars);
+        int max = -1;
+        for (int i = 0; i < curr.length(); i++) {
+            char[] chars = curr.toCharArray();
+            for (int j = 0; j < 4; j++) {
+                chars[i] = mutations[j];
+                String newCurr = new String(chars);
+                if (!curr.equals(newCurr)) {
+                    max = Math.max(max, findMinMutation(newCurr, end, cost + 1, bankSet, visit));
+                }
+            }
+        }
+        return max;
+
     }
 }
