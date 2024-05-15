@@ -7,7 +7,7 @@ public class Utf8Validation {
 //        System.out.println(new Utf8Validation().validUtf8(new int[]{145}));
 //        System.out.println(new Utf8Validation().validUtf8(new int[]{230, 136, 145}));
 //        System.out.println(new Utf8Validation().validUtf8(new int[]{250, 145, 145, 145, 145}));
-        System.out.println(new Utf8Validation().validUtf8(new int[]{0,  171, 183, 174}));
+        System.out.println(new Utf8Validation().validUtf8(new int[]{0, 171, 183, 174}));
     }
 
     public boolean validUtf8(int[] data) {

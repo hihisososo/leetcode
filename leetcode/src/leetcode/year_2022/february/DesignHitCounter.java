@@ -23,13 +23,13 @@ public class DesignHitCounter {
 
     public void hit(int timestamp) {
         hits.addLast(timestamp);
-        while(!hits.isEmpty() && timestamp - hits.getFirst() >= 300){
+        while (!hits.isEmpty() && timestamp - hits.getFirst() >= 300) {
             hits.pollFirst();
         }
     }
 
     public int getHits(int timestamp) {
-        while(!hits.isEmpty() && timestamp - hits.getFirst() >= 300){
+        while (!hits.isEmpty() && timestamp - hits.getFirst() >= 300) {
             hits.pollFirst();
         }
         return hits.size();

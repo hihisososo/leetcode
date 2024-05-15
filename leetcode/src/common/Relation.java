@@ -7,8 +7,10 @@ public class Relation {
         this.graph = graph;
     }
 
-    public boolean knows(int a, int b){
+    public boolean knows(int a, int b) {
         return graph[a][b] == 1;
-    };
+    }
+
+    ;
 
 }

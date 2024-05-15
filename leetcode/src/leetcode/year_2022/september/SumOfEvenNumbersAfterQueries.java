@@ -6,7 +6,7 @@ public class SumOfEvenNumbersAfterQueries {
     public static void main(String[] args) {
         System.out.println(Arrays.toString(new SumOfEvenNumbersAfterQueries().sumEvenAfterQueries(new int[]{1, 2, 3, 4}, new int[][]{{1, 0}, {-3, 1}, {-4, 0}, {2, 3}})));
         System.out.println(Arrays.toString(new SumOfEvenNumbersAfterQueries().sumEvenAfterQueries(new int[]{1}, new int[][]{{4, 0}})));
-        System.out.println(Arrays.toString(new SumOfEvenNumbersAfterQueries().sumEvenAfterQueries(new int[]{5,5,4}, new int[][]{{0,1},{1,0},{4,1}})));
+        System.out.println(Arrays.toString(new SumOfEvenNumbersAfterQueries().sumEvenAfterQueries(new int[]{5, 5, 4}, new int[][]{{0, 1}, {1, 0}, {4, 1}})));
     }
 
     public int[] sumEvenAfterQueries(int[] nums, int[][] queries) {

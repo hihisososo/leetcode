@@ -6,7 +6,10 @@ public class SortTransformedArray {
     public static void main(String[] args) {
         //int[] nums = new int[]{-4, -2, 2, 4};int a = 1;int b = 3;int c = 5;
         //int[] nums = new int[]{-4, -2, 2, 4};int a = -1;int b = 3;int c = 5;
-        int[] nums = new int[]{-99, -96, -96, -93, -88, -88, -73, -71, -70, -70, -69, -68, -67, -66, -65, -64, -63, -54, -48, -46, -38, -35, -35, -34, -27, -24, -23, -18, -17, -16, -15, -14, -7, -6, 6, 10, 13, 14, 17, 21, 23, 24, 25, 26, 27, 32, 34, 35, 37, 38, 42, 42, 51, 52, 53, 54, 58, 62, 73, 78, 79, 86, 88, 88, 88, 89, 89, 90, 90, 91, 92, 95, 99};int a = 94;int b = -71;int c = -46;
+        int[] nums = new int[]{-99, -96, -96, -93, -88, -88, -73, -71, -70, -70, -69, -68, -67, -66, -65, -64, -63, -54, -48, -46, -38, -35, -35, -34, -27, -24, -23, -18, -17, -16, -15, -14, -7, -6, 6, 10, 13, 14, 17, 21, 23, 24, 25, 26, 27, 32, 34, 35, 37, 38, 42, 42, 51, 52, 53, 54, 58, 62, 73, 78, 79, 86, 88, 88, 88, 89, 89, 90, 90, 91, 92, 95, 99};
+        int a = 94;
+        int b = -71;
+        int c = -46;
         System.out.println(Arrays.toString(new SortTransformedArray().sortTransformedArray(nums, a, b, c)));
     }
 
@@ -29,7 +32,7 @@ public class SortTransformedArray {
             return result;
         }
 
-        double mid = (double)-b / (2 * a);
+        double mid = (double) -b / (2 * a);
         if (a < 0) {
             int maxIdx = 0;
             double minVal = Double.MAX_VALUE;

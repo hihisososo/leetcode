@@ -4,7 +4,7 @@ import java.util.Arrays;
 
 public class RotateArray {
     public static void main(String[] args) {
-        int[] nums = new int[]{-1,-100,3,99};
+        int[] nums = new int[]{-1, -100, 3, 99};
         new RotateArray().rotate(nums, 2);
         Arrays.stream(nums).forEach(System.out::println);
 

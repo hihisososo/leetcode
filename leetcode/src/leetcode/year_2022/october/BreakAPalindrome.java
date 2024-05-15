@@ -17,7 +17,7 @@ public class BreakAPalindrome {
         for (int i = 0; i < palindrome.length(); i++) {
             char c = palindrome.charAt(i);
             if (c != 'a') {
-                if(palindrome.length() % 2 == 1 && i == palindrome.length()/2){
+                if (palindrome.length() % 2 == 1 && i == palindrome.length() / 2) {
                     continue;
                 }
                 replaceIdx = i;
@@ -33,7 +33,7 @@ public class BreakAPalindrome {
                 return palindrome.substring(0, replaceIdx) + 'a' + palindrome.substring(replaceIdx + 1);
             }
         } else {
-            return palindrome.substring(0, palindrome.length()-1) + "b";
+            return palindrome.substring(0, palindrome.length() - 1) + "b";
         }
     }
 }

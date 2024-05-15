@@ -5,7 +5,7 @@ import java.util.List;
 
 public class VerifyPreorderSequenceInBinarySearchTree {
     public static void main(String[] args) {
-        int[] preorder = new int[]{5,2,6,1,3};
+        int[] preorder = new int[]{5, 2, 6, 1, 3};
         System.out.println(new VerifyPreorderSequenceInBinarySearchTree().verifyPreorder(preorder));
     }
 

@@ -1,10 +1,14 @@
 package leetcode.year_2022.february;
 
-import java.util.*;
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.HashSet;
+import java.util.List;
 
 public class NumberOfConnectedComponentsInAnUndirectedGraph {
     public static void main(String[] args) {
-        int n = 5;int[][] edges = new int[][]{{0, 1}, {1, 2}, {3, 4}};
+        int n = 5;
+        int[][] edges = new int[][]{{0, 1}, {1, 2}, {3, 4}};
 //        int n = 5;int[][] edges = new int[][]{{0, 1}, {1, 2}, {2, 3}, {3,4}};
 //        int n = 3;int[][] edges = new int[][]{{2, 0}, {2, 1}};
         System.out.println(new NumberOfConnectedComponentsInAnUndirectedGraph().countComponents(n, edges));
@@ -25,7 +29,7 @@ public class NumberOfConnectedComponentsInAnUndirectedGraph {
         int components = 0;
         HashSet<Integer> connected = new HashSet<>();
         for (int key : edgeMap.keySet()) {
-            if(!connected.contains(key)){
+            if (!connected.contains(key)) {
                 components++;
             }
             traverse(edgeMap.get(key), edgeMap, connected);

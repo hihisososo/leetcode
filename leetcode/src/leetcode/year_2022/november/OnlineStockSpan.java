@@ -1,6 +1,6 @@
 package leetcode.year_2022.november;
 
-import javafx.util.Pair;
+import common.Pair;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -39,7 +39,7 @@ public class OnlineStockSpan {
             } else {
                 stockPrices.add(new Pair<>(price, 1));
             }
-        }else{
+        } else {
             stockPrices.add(new Pair<>(price, 1));
         }
         int consecutive = 0;

@@ -8,36 +8,36 @@ public class DivideTwoIntegers {
     }
 
     public int divide(int dividend, int divisor) {
-        if(dividend == Integer.MIN_VALUE && divisor == -1){
+        if (dividend == Integer.MIN_VALUE && divisor == -1) {
             return Integer.MAX_VALUE;
         }
 
-        if(divisor == 1){
+        if (divisor == 1) {
             return dividend;
         }
-        if(divisor == -1){
+        if (divisor == -1) {
             return -dividend;
         }
 
         boolean isPlus = false;
-        if((dividend >= 0 && divisor >= 0) || (dividend < 0 && divisor <0)){
+        if ((dividend >= 0 && divisor >= 0) || (dividend < 0 && divisor < 0)) {
             isPlus = true;
         }
 
-        if(dividend > 0){
+        if (dividend > 0) {
             dividend = -1 * dividend;
         }
         divisor = Math.abs(divisor);
 
         int cnt = 0;
-        while(dividend <= -divisor){
+        while (dividend <= -divisor) {
             cnt++;
             dividend += divisor;
         }
 
-        if(isPlus){
+        if (isPlus) {
             return cnt;
-        }else{
+        } else {
             return -1 * cnt;
         }
     }

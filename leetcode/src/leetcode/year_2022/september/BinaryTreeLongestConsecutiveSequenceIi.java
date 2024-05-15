@@ -1,11 +1,9 @@
 package leetcode.year_2022.september;
 
-import common.TreeNode;
-
 public class BinaryTreeLongestConsecutiveSequenceIi {
-	public static void main(String[] args) {
-		
-	}
+    public static void main(String[] args) {
+
+    }
 //    public int longestConsecutive(TreeNode root) {
 //        return findLongest(root);
 //    }

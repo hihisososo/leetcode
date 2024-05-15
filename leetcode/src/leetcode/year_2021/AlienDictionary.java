@@ -21,7 +21,7 @@ public class AlienDictionary {
         }
 
 
-    return "";
+        return "";
 
     }
 

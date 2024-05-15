@@ -1,7 +1,5 @@
 package leetcode.year_2022.october;
 
-import java.util.Arrays;
-
 public class NumberOfDiceRollsWithTargetSum {
     public static void main(String[] args) {
         System.out.println(new NumberOfDiceRollsWithTargetSum().numRollsToTarget(1, 6, 3));

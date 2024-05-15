@@ -1,10 +1,13 @@
 package leetcode.year_2021;
 
-import java.util.*;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Deque;
+import java.util.LinkedList;
 
 public class WiggleSortII {
     public static void main(String[] args) {
-        int[] nums = new int[]{1,1,2,1,2,2,1};
+        int[] nums = new int[]{1, 1, 2, 1, 2, 2, 1};
         new WiggleSortII().wiggleSort(nums);
         System.out.println(Arrays.toString(nums));
     }
@@ -32,10 +35,10 @@ public class WiggleSortII {
         int lastMinVal = -1;
         for (int i = 0; i < newNums.length; i++) {
             int value;
-            if(i % 2 == 0){
+            if (i % 2 == 0) {
                 value = minQueue.poll();
-                lastMinVal =value;
-            }else{
+                lastMinVal = value;
+            } else {
                 value = getMaxval(maxQueue, lastMinVal);
             }
 

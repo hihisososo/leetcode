@@ -44,7 +44,7 @@ public class CourseSchedule {
         if (visited[node.val] == true) {
             return true;
         }
-        if(memo.contains(node.val)){
+        if (memo.contains(node.val)) {
             return false;
         }
         visited[node.val] = true;

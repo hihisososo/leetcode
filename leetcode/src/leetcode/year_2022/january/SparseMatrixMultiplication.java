@@ -4,9 +4,10 @@ import java.util.Arrays;
 
 public class SparseMatrixMultiplication {
     public static void main(String[] args) {
-        int[][] mat1 = {{1, 0, 0}, {-1, 0, 3}};int[][] mat2 = {{7, 0, 0}, {0, 0, 0}, {0, 0, 1}};
+        int[][] mat1 = {{1, 0, 0}, {-1, 0, 3}};
+        int[][] mat2 = {{7, 0, 0}, {0, 0, 0}, {0, 0, 1}};
         int[][] result = new SparseMatrixMultiplication().multiply(mat1, mat2);
-        for (int[] r  :result) {
+        for (int[] r : result) {
             System.out.println(Arrays.toString(r));
         }
     }

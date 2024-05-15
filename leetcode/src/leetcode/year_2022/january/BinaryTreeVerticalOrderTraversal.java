@@ -1,7 +1,7 @@
 package leetcode.year_2022.january;
 
+import common.Pair;
 import common.TreeNode;
-import javafx.util.Pair;
 
 import java.util.*;
 
@@ -12,7 +12,7 @@ public class BinaryTreeVerticalOrderTraversal {
     }
 
     public List<List<Integer>> verticalOrder(TreeNode root) {
-        if(root == null){
+        if (root == null) {
             return new ArrayList<>();
         }
         TreeMap<Integer, List<Integer>> map = new TreeMap<>();

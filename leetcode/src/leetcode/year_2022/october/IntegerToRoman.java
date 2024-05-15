@@ -17,13 +17,13 @@ public class IntegerToRoman {
         String result = "";
         int idx = 0;
         String numStr = String.valueOf(num);
-        for(int i=numStr.length()-1;i>=0;i--){
+        for (int i = numStr.length() - 1; i >= 0; i--) {
             int numIdx = Integer.parseInt(String.valueOf(numStr.charAt(i)));
-            if(numIdx == 0){
+            if (numIdx == 0) {
                 idx++;
                 continue;
             }
-            String expression = s[idx++][numIdx-1];
+            String expression = s[idx++][numIdx - 1];
             result = expression + result;
         }
         return result;

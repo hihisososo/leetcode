@@ -2,7 +2,7 @@ package leetcode.year_2021;
 
 public class StringToIntegerAtoi {
     public static void main(String[] args) {
-        String s =  "   -42";
+        String s = "   -42";
         System.out.println(new StringToIntegerAtoi().myAtoi(s));
     }
 
@@ -20,7 +20,7 @@ public class StringToIntegerAtoi {
             if (s.isEmpty()) {
                 return 0;
             }
-            if(s.length() == 1 && (s.charAt(0) == '+' || s.charAt(0) == '-')){
+            if (s.length() == 1 && (s.charAt(0) == '+' || s.charAt(0) == '-')) {
                 return 0;
             }
 

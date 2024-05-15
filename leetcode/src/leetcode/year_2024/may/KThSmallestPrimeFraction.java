@@ -1,6 +1,6 @@
 package leetcode.year_2024.may;
 
-import javafx.util.Pair;
+import common.Pair;
 
 import java.util.Arrays;
 import java.util.Comparator;

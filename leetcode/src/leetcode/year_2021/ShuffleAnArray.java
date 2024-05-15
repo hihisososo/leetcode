@@ -1,10 +1,12 @@
 package leetcode.year_2021;
 
-import java.util.*;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Random;
 
 public class ShuffleAnArray {
     public static void main(String[] args) {
-        ShuffleAnArray shuffleAnArray = new ShuffleAnArray(new int[]{1,2,3});
+        ShuffleAnArray shuffleAnArray = new ShuffleAnArray(new int[]{1, 2, 3});
         System.out.println(Arrays.toString(shuffleAnArray.shuffle()));
         System.out.println(Arrays.toString(shuffleAnArray.reset()));
         System.out.println(Arrays.toString(shuffleAnArray.shuffle()));

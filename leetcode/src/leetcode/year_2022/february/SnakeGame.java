@@ -1,12 +1,10 @@
 package leetcode.year_2022.february;
 
-import javafx.util.Pair;
+import common.Pair;
 
 import java.util.ArrayDeque;
 import java.util.Deque;
 import java.util.HashSet;
-import java.util.Queue;
-import java.util.concurrent.ArrayBlockingQueue;
 
 public class SnakeGame {
     public static void main(String[] args) {

@@ -7,7 +7,7 @@ public class TwoSumIvInputSsABst {
     public static void main(String[] args) {
         System.out.println(new TwoSumIvInputSsABst().findTarget(TreeDeserializer.deserializeBinaryTree(new Integer[]{1}), 2));
         System.out.println(new TwoSumIvInputSsABst().findTarget(TreeDeserializer.deserializeBinaryTree(new Integer[]{2, 1, 3}), 4));
-        System.out.println(new TwoSumIvInputSsABst().findTarget(TreeDeserializer.deserializeBinaryTree(new Integer[]{1,0,4,-2,null,3}), 7));
+        System.out.println(new TwoSumIvInputSsABst().findTarget(TreeDeserializer.deserializeBinaryTree(new Integer[]{1, 0, 4, -2, null, 3}), 7));
         System.out.println(new TwoSumIvInputSsABst().findTarget(TreeDeserializer.deserializeBinaryTree(new Integer[]{5, 3, 6, 2, 4, null, 7}), 9));
         System.out.println(new TwoSumIvInputSsABst().findTarget(TreeDeserializer.deserializeBinaryTree(new Integer[]{5, 3, 6, 2, 4, null, 7}), 28));
     }

@@ -5,14 +5,14 @@ import java.util.List;
 
 public class SpiralMatrix {
     public static void main(String[] args) {
-        int[][] max = new int[][]{{1,2,3,4},{5,6,7,8},{9,10,11,12}};
+        int[][] max = new int[][]{{1, 2, 3, 4}, {5, 6, 7, 8}, {9, 10, 11, 12}};
         System.out.println(new SpiralMatrix().spiralOrder(max));
     }
 
     public List<Integer> spiralOrder(int[][] matrix) {
         ArrayList<Integer> list = new ArrayList<>();
         Point point = new Point(0, -1);
-        while(true){
+        while (true) {
             int row = point.row;
             int col = point.col;
 
@@ -21,7 +21,7 @@ public class SpiralMatrix {
             left(point, list, matrix);
             up(point, list, matrix);
 
-            if(row == point.row && col == point.col){
+            if (row == point.row && col == point.col) {
                 break;
             }
         }
@@ -31,9 +31,9 @@ public class SpiralMatrix {
     private void right(Point point, ArrayList<Integer> list, int[][] matrix) {
         int row = point.row;
         int col = point.col;
-        while(true){
+        while (true) {
             col++;
-            if(col >= matrix[row].length ||matrix[row][col] == Integer.MIN_VALUE){
+            if (col >= matrix[row].length || matrix[row][col] == Integer.MIN_VALUE) {
                 break;
             }
             list.add(matrix[row][col]);
@@ -46,9 +46,9 @@ public class SpiralMatrix {
     private void down(Point point, ArrayList<Integer> list, int[][] matrix) {
         int row = point.row;
         int col = point.col;
-        while(true){
+        while (true) {
             row++;
-            if(row >= matrix.length|| matrix[row][col] == Integer.MIN_VALUE){
+            if (row >= matrix.length || matrix[row][col] == Integer.MIN_VALUE) {
                 break;
             }
             list.add(matrix[row][col]);
@@ -61,9 +61,9 @@ public class SpiralMatrix {
     private void left(Point point, ArrayList<Integer> list, int[][] matrix) {
         int row = point.row;
         int col = point.col;
-        while(true){
+        while (true) {
             col--;
-            if(col < 0 || matrix[row][col] == Integer.MIN_VALUE){
+            if (col < 0 || matrix[row][col] == Integer.MIN_VALUE) {
                 break;
             }
             list.add(matrix[row][col]);
@@ -76,9 +76,9 @@ public class SpiralMatrix {
     private void up(Point point, ArrayList<Integer> list, int[][] matrix) {
         int row = point.row;
         int col = point.col;
-        while(true){
+        while (true) {
             row--;
-            if(row < 0 || matrix[row][col] == Integer.MIN_VALUE ){
+            if (row < 0 || matrix[row][col] == Integer.MIN_VALUE) {
                 break;
             }
             list.add(matrix[row][col]);

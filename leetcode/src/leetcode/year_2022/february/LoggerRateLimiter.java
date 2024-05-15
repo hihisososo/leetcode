@@ -15,19 +15,20 @@ public class LoggerRateLimiter {
     }
 
     HashMap<String, Integer> logTimeMap;
+
     public LoggerRateLimiter() {
         logTimeMap = new HashMap<>();
     }
 
     public boolean shouldPrintMessage(int timestamp, String message) {
-        if(logTimeMap.containsKey(message)){
-            if(timestamp - logTimeMap.get(message) >= 10){
+        if (logTimeMap.containsKey(message)) {
+            if (timestamp - logTimeMap.get(message) >= 10) {
                 logTimeMap.put(message, timestamp);
                 return true;
-            }else{
+            } else {
                 return false;
             }
-        }else{
+        } else {
             logTimeMap.put(message, timestamp);
             return true;
         }

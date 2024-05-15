@@ -10,7 +10,7 @@ public class PopulatingNextRightPointersInEachNode {
     }
 
     public Node connect(Node root) {
-        if(root == null){
+        if (root == null) {
             return root;
         }
 
@@ -29,10 +29,10 @@ public class PopulatingNextRightPointersInEachNode {
         ArrayDeque<Node> newQueue = new ArrayDeque<>();
         while (!queue.isEmpty()) {
             Node node = queue.poll();
-            if(node.left != null){
+            if (node.left != null) {
                 newQueue.add(node.left);
             }
-            if(node.right != null){
+            if (node.right != null) {
                 newQueue.add(node.right);
             }
 

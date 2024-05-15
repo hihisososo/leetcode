@@ -9,7 +9,7 @@ import java.util.Map;
 public class PseudoPalindromicPathsInABinaryTree {
     public static void main(String[] args) {
         System.out.println(new PseudoPalindromicPathsInABinaryTree().pseudoPalindromicPaths(TreeDeserializer.deserializeBinaryTree(new Integer[]{2, 3, 1, 3, 1, null, 1})));
-        System.out.println(new PseudoPalindromicPathsInABinaryTree().pseudoPalindromicPaths(TreeDeserializer.deserializeBinaryTree(new Integer[]{2,1,1,1,3,null,null,null,null,null,1})));
+        System.out.println(new PseudoPalindromicPathsInABinaryTree().pseudoPalindromicPaths(TreeDeserializer.deserializeBinaryTree(new Integer[]{2, 1, 1, 1, 3, null, null, null, null, null, 1})));
         System.out.println(new PseudoPalindromicPathsInABinaryTree().pseudoPalindromicPaths(TreeDeserializer.deserializeBinaryTree(new Integer[]{9})));
     }
 
@@ -39,10 +39,10 @@ public class PseudoPalindromicPathsInABinaryTree {
 
     private int checkPalindrome(Map<Integer, Integer> cntMap) {
         int oddCnt = 0;
-        for (Map.Entry<Integer, Integer> e : cntMap.entrySet()){
-            if(e.getValue() % 2 == 1){
+        for (Map.Entry<Integer, Integer> e : cntMap.entrySet()) {
+            if (e.getValue() % 2 == 1) {
                 oddCnt++;
-                if(oddCnt == 2){
+                if (oddCnt == 2) {
                     return 0;
                 }
             }

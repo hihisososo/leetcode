@@ -5,7 +5,7 @@ import java.util.*;
 public class WordSquares {
     public static void main(String[] args) {
 //        String[] words = new String[]{"area", "lead", "wall", "lady", "ball"};
-        String[] words = new String[]{"abat","baba","atan","atal"};
+        String[] words = new String[]{"abat", "baba", "atan", "atal"};
         System.out.println(new WordSquares().wordSquares(words));
     }
 

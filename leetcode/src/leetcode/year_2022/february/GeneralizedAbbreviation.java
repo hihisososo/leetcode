@@ -1,7 +1,6 @@
 package leetcode.year_2022.february;
 
 import java.util.ArrayList;
-import java.util.Collections;
 import java.util.List;
 
 public class GeneralizedAbbreviation {

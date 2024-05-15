@@ -34,9 +34,9 @@ public class OneEditDistance {
             }
         }
 
-        if(isEdit){
+        if (isEdit) {
             return sIdx == s.length() && tIdx == t.length();
-        }else{
+        } else {
             return Math.abs(s.length() - t.length()) == 1;
         }
     }

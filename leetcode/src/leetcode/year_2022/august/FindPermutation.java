@@ -46,7 +46,7 @@ public class FindPermutation {
         for (int i = start + 1; i < s.length(); i++) {
             if (s.charAt(i) == 'D') {
                 lastIdx = i;
-            }else{
+            } else {
                 break;
             }
         }

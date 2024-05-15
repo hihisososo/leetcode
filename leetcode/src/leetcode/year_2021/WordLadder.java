@@ -1,6 +1,6 @@
 package leetcode.year_2021;
 
-import javafx.util.Pair;
+import common.Pair;
 
 import java.io.IOException;
 import java.nio.file.Files;
@@ -19,7 +19,7 @@ public class WordLadder {
         Stream<String> lines = Files.lines(path);
         List<String> list = lines.collect(Collectors.toList());
         lines.close();
-        ArrayList<String> wordList = new ArrayList<String>(Arrays.asList(new String[]{"hot","dot","dog","lot","log","cog"}));
+        ArrayList<String> wordList = new ArrayList<String>(Arrays.asList(new String[]{"hot", "dot", "dog", "lot", "log", "cog"}));
         System.out.println(new WordLadder().ladderLength(beginWord, endWord, wordList));
     }
 
