@@ -2,7 +2,7 @@ package leetcode.year_2022.february;
 
 import common.NestInteger;
 import common.NestedInteger;
-import javafx.util.Pair;
+import common.Pair;
 
 import java.util.ArrayList;
 import java.util.LinkedList;

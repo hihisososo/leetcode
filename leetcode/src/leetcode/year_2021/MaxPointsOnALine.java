@@ -1,6 +1,6 @@
 package leetcode.year_2021;
 
-import javafx.util.Pair;
+import common.Pair;
 
 import java.util.HashMap;
 import java.util.HashSet;
@@ -8,7 +8,7 @@ import java.util.Objects;
 
 public class MaxPointsOnALine {
     public static void main(String[] args) {
-        int[][] points = new int[][]{{0,0}};
+        int[][] points = new int[][]{{0, 0}};
         System.out.println(new MaxPointsOnALine().maxPoints(points));
     }
 

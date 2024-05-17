@@ -29,7 +29,7 @@ public class OddEvenLinkedList {
     }
 
     public ListNode oddEvenList(ListNode head) {
-        if(head == null){
+        if (head == null) {
             return null;
         }
 

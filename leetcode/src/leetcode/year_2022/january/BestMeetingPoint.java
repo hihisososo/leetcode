@@ -1,13 +1,13 @@
 package leetcode.year_2022.january;
 
-import javafx.util.Pair;
+import common.Pair;
 
 import java.util.ArrayList;
 import java.util.List;
 
 public class BestMeetingPoint {
     public static void main(String[] args) {
-        int[][] grid = new int[][]{{1,0,0,0,1},{0,0,0,0,0},{0,0,1,0,0}};
+        int[][] grid = new int[][]{{1, 0, 0, 0, 1}, {0, 0, 0, 0, 0}, {0, 0, 1, 0, 0}};
         System.out.println(new BestMeetingPoint().minTotalDistance(grid));
     }
 
@@ -29,7 +29,7 @@ public class BestMeetingPoint {
         if (x < 0 || x >= grid.length | y < 0 || y >= grid[0].length) {
             return Integer.MAX_VALUE;
         }
-        if(visit[x][y] == true){
+        if (visit[x][y] == true) {
             return Integer.MAX_VALUE;
         }
         visit[x][y] = true;
@@ -49,7 +49,7 @@ public class BestMeetingPoint {
         min = Math.min(min, up);
 
         int result = Integer.MAX_VALUE;
-        if(min == curr){
+        if (min == curr) {
             result = curr;
         }
         if (left == min) {

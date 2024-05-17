@@ -2,7 +2,7 @@ package leetcode.year_2021;
 
 public class BestTimeToBuyAndSellStockIi {
     public static void main(String[] args) {
-        int[] prices = new int[]{3,2,6,5,0,3};
+        int[] prices = new int[]{3, 2, 6, 5, 0, 3};
         System.out.println(new BestTimeToBuyAndSellStockIi().maxProfit(prices));
     }
 

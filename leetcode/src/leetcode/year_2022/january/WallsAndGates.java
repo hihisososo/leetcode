@@ -1,10 +1,9 @@
 package leetcode.year_2022.january;
 
-import javafx.util.Pair;
+import common.Pair;
 
 import java.util.Arrays;
 import java.util.LinkedList;
-import java.util.PriorityQueue;
 import java.util.Queue;
 
 public class WallsAndGates {

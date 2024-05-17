@@ -18,7 +18,7 @@ public class DecodeString {
             if (isDigit(c)) {
                 int notDigitFirstIdx = getNotDigitFirstIdx(s, i);
                 int rightBracketIdx = getRightBracketIdx(s, notDigitFirstIdx);
-                String target = s.substring(notDigitFirstIdx+1, rightBracketIdx);
+                String target = s.substring(notDigitFirstIdx + 1, rightBracketIdx);
                 int multiple = Integer.parseInt(s.substring(i, notDigitFirstIdx));
                 String repeatTarget = decode(target);
                 for (int j = 0; j < multiple; j++) {

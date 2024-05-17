@@ -1,11 +1,14 @@
 package leetcode.year_2022.november;
 
-import java.util.*;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Map;
+import java.util.TreeMap;
 
 public class FindPlayersWithZeroOrOneLosses {
     public static void main(String[] args) {
         System.out.println(new FindPlayersWithZeroOrOneLosses().findWinners(new int[][]{{1, 3}, {2, 3}, {3, 6}, {5, 6}, {5, 7}, {4, 5}, {4, 8}, {4, 9}, {10, 4}, {10, 9}}));
-        System.out.println(new FindPlayersWithZeroOrOneLosses().findWinners(new int[][]{{2,3},{1,3},{5,4},{6,4}}));
+        System.out.println(new FindPlayersWithZeroOrOneLosses().findWinners(new int[][]{{2, 3}, {1, 3}, {5, 4}, {6, 4}}));
     }
 
     public List<List<Integer>> findWinners(int[][] matches) {

@@ -15,34 +15,34 @@ public class LongestSubstringWithAtLeastKRepeatingCharacters {
         for (int i = 0; i < s.length(); i++) {
             Character c = s.charAt(i);
             charIntMap.putIfAbsent(c, 0);
-            charIntMap.put(c,charIntMap.get(c)+1);
-            if(charIntMap.get(c) == k){
+            charIntMap.put(c, charIntMap.get(c) + 1);
+            if (charIntMap.get(c) == k) {
                 kCnt++;
             }
         }
-        if(kCnt == 0){
+        if (kCnt == 0) {
             return 0;
         }
 
         int maxLen = 0;
         for (int i = 0; i < s.length(); i++) {
-            if(i != 0){
-                if(isDecreaseKcnt(s.charAt(i-1), charIntMap, k)){
+            if (i != 0) {
+                if (isDecreaseKcnt(s.charAt(i - 1), charIntMap, k)) {
                     kCnt--;
                 }
-                decreaseMap(s.charAt(i-1),charIntMap);
+                decreaseMap(s.charAt(i - 1), charIntMap);
             }
             HashMap<Character, Integer> copyMap = new HashMap<Character, Integer>(charIntMap);
             int copyKcnt = kCnt;
-            for (int j = s.length(); j >= i ; j--) {
-                if(j != s.length()){
-                    if(isDecreaseKcnt(s.charAt(j), copyMap, k)){
+            for (int j = s.length(); j >= i; j--) {
+                if (j != s.length()) {
+                    if (isDecreaseKcnt(s.charAt(j), copyMap, k)) {
                         copyKcnt--;
                     }
-                    decreaseMap(s.charAt(j),copyMap);
+                    decreaseMap(s.charAt(j), copyMap);
                 }
-                if(copyKcnt == copyMap.keySet().size()){
-                  maxLen = Math.max(maxLen, j - i);
+                if (copyKcnt == copyMap.keySet().size()) {
+                    maxLen = Math.max(maxLen, j - i);
                 }
             }
         }
@@ -51,8 +51,8 @@ public class LongestSubstringWithAtLeastKRepeatingCharacters {
     }
 
     private void decreaseMap(char c, HashMap<Character, Integer> charIntMap) {
-        charIntMap.put(c,charIntMap.get(c) - 1);
-        if(charIntMap.get(c) == 0){
+        charIntMap.put(c, charIntMap.get(c) - 1);
+        if (charIntMap.get(c) == 0) {
             charIntMap.remove(c);
         }
     }

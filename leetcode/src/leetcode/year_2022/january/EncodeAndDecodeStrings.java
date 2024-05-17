@@ -2,13 +2,12 @@ package leetcode.year_2022.january;
 
 import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.Base64;
 import java.util.List;
 
 public class EncodeAndDecodeStrings {
     public static void main(String[] args) {
         EncodeAndDecodeStrings ed = new EncodeAndDecodeStrings();
-        System.out.println(ed.decode(ed.encode(Arrays.asList(new String[]{",",",",","}))));
+        System.out.println(ed.decode(ed.encode(Arrays.asList(new String[]{",", ",", ","}))));
     }
 
     public String encode(List<String> strs) {

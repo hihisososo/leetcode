@@ -8,7 +8,7 @@ public class CountCompleteTreeNodes {
     }
 
     public int countNodes(TreeNode root) {
-        if(root == null){
+        if (root == null) {
             return 0;
         }
         return countDfs(root);

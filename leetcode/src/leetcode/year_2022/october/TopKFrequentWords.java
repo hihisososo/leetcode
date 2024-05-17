@@ -1,13 +1,13 @@
 package leetcode.year_2022.october;
 
-import javafx.util.Pair;
+import common.Pair;
 
 import java.util.*;
 
 public class TopKFrequentWords {
     public static void main(String[] args) {
         System.out.println(new TopKFrequentWords().topKFrequent(new String[]{"i", "love", "leetcode", "i", "love", "coding"}, 2));
-        System.out.println(new TopKFrequentWords().topKFrequent(new String[]{"the","day","is","sunny","the","the","the","sunny","is","is"}, 4));
+        System.out.println(new TopKFrequentWords().topKFrequent(new String[]{"the", "day", "is", "sunny", "the", "the", "the", "sunny", "is", "is"}, 4));
     }
 
     public List<String> topKFrequent(String[] words, int k) {

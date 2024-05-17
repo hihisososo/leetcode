@@ -1,14 +1,16 @@
 package leetcode.year_2021;
 
-import java.io.*;
+import java.io.FileNotFoundException;
+import java.io.IOException;
+import java.io.StringReader;
 import java.util.Arrays;
 
-public class ReadNCharactersGivenRead4 extends Reader4{
+public class ReadNCharactersGivenRead4 extends Reader4 {
 
     public static void main(String[] args) throws FileNotFoundException {
         StringReader reader = new StringReader("abcde");
         char[] buffer = new char[4];
-        int ret = new ReadNCharactersGivenRead4(reader).read(buffer,2);
+        int ret = new ReadNCharactersGivenRead4(reader).read(buffer, 2);
         System.out.println(ret);
         System.out.println(Arrays.toString(buffer));
     }
@@ -21,10 +23,10 @@ public class ReadNCharactersGivenRead4 extends Reader4{
         char[] buffer = new char[4];
         int ret = 0;
         int writePos = 0;
-        while((ret = read4(buffer)) > 0){
+        while ((ret = read4(buffer)) > 0) {
             for (int i = 0; i < ret; i++) {
                 buf[writePos++] = buffer[i];
-                if(writePos == n){
+                if (writePos == n) {
                     return n;
                 }
             }
@@ -33,6 +35,7 @@ public class ReadNCharactersGivenRead4 extends Reader4{
     }
 
 }
+
 class Reader4 {
     StringReader reader;
 

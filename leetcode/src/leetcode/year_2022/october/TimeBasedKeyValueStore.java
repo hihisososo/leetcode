@@ -1,6 +1,6 @@
 package leetcode.year_2022.october;
 
-import javafx.util.Pair;
+import common.Pair;
 
 import java.util.HashMap;
 import java.util.LinkedList;

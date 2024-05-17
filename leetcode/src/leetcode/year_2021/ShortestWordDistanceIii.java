@@ -33,14 +33,14 @@ public class ShortestWordDistanceIii {
         while ((word1Val != Integer.MAX_VALUE) || (word2Val != Integer.MIN_VALUE)) {
             word1Val = word1Idx == -1 ? Integer.MIN_VALUE : word1Idxs.get(word1Idx);
             word2Val = word2Idx == -1 ? Integer.MIN_VALUE : word2Idxs.get(word2Idx);
-            if(word1Val == word2Val){
+            if (word1Val == word2Val) {
                 word1Idx--;
                 word2Idx--;
                 continue;
-            }else if(word1Val > word2Val){
+            } else if (word1Val > word2Val) {
                 word1Idx--;
                 minLength = Math.min(minLength, Math.abs(word1Val - word2Val));
-            }else{
+            } else {
                 word2Idx--;
                 minLength = Math.min(minLength, Math.abs(word1Val - word2Val));
             }

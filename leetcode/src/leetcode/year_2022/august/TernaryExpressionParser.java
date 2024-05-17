@@ -29,7 +29,7 @@ public class TernaryExpressionParser {
 
     private String getRight(String expression) {
         int colonIndex = getColonIndex(expression);
-        return expression.substring(colonIndex+1);
+        return expression.substring(colonIndex + 1);
     }
 
     private int getColonIndex(String expression) {

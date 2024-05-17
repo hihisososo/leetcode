@@ -1,6 +1,6 @@
 package leetcode.year_2021;
 
-import javafx.util.Pair;
+import common.Pair;
 
 import java.util.*;
 

@@ -1,7 +1,6 @@
 package leetcode.year_2021;
 
 import java.util.HashMap;
-import java.util.HashSet;
 
 public class TwoSumIiiDataStructureDesign {
     HashMap<Integer, Boolean> map;

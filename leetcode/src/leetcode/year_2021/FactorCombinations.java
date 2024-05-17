@@ -21,14 +21,14 @@ public class FactorCombinations {
     }
 
     private void find(ArrayList<Integer> integers, int n, HashSet<String> dupCheckMap, List<List<Integer>> result) {
-        if(!integers.isEmpty()){
+        if (!integers.isEmpty()) {
             ArrayList<Integer> copy = new ArrayList<>(integers);
             copy.add(n);
             Collections.sort(copy);
             String factor = getFactorStr(copy);
             if (dupCheckMap.contains(factor)) {
                 return;
-            }else{
+            } else {
                 result.add(copy);
                 dupCheckMap.add(factor);
             }

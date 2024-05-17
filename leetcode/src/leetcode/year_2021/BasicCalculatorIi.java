@@ -38,7 +38,7 @@ public class BasicCalculatorIi {
                         }
                         break;
                 }
-            }else{
+            } else {
                 stack.push(token);
             }
         }

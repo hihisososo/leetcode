@@ -33,8 +33,8 @@ public class MinimumTimeToMakeRopeColorful {
             }
         }
         if (seq) {
-            maxVal = Math.max(neededTime[colors.length()-1], maxVal);
-            sum += neededTime[colors.length()-1];
+            maxVal = Math.max(neededTime[colors.length() - 1], maxVal);
+            sum += neededTime[colors.length() - 1];
             result += (sum - maxVal);
         }
         return result;

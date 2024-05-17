@@ -14,8 +14,8 @@ public class StrobogrammaticNumberIi {
     }
 
     public List<String> findStrobogrammatic(int n) {
-        if(n == 1){
-            return Arrays.asList(new String[]{"0","1","8"});
+        if (n == 1) {
+            return Arrays.asList(new String[]{"0", "1", "8"});
         }
 
         if (n % 2 == 0) {

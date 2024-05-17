@@ -32,12 +32,12 @@ public class GraphValidTree {
             return;
         }
 
-        if(visited[edge]){
+        if (visited[edge]) {
             return;
         }
         visited[edge] = true;
         for (int i = 0; i < nodeEdges.length; i++) {
-            if(!nodeEdges[edge][i] || (i == parent)){
+            if (!nodeEdges[edge][i] || (i == parent)) {
                 continue;
             }
             traverse(nodeEdges, edge, i, visited);
@@ -52,7 +52,7 @@ public class GraphValidTree {
 
         visited[edge] = true;
         for (int i = 0; i < nodeEdges[edge].length; i++) {
-            if(!nodeEdges[edge][i] || (i == parent)){
+            if (!nodeEdges[edge][i] || (i == parent)) {
                 continue;
             }
             if (isCycle(nodeEdges, edge, i, visited)) {

@@ -41,5 +41,5 @@ public class LongestPalindromeByConcatenatingTwoLetterWords {
         System.out.println(sameWordCnt);
         System.out.println(reverseWordCnt);
         return 1;
-}
+    }
 }

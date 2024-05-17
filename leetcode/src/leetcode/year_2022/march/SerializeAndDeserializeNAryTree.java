@@ -80,7 +80,7 @@ public class SerializeAndDeserializeNAryTree {
     }
 
     private static void addChild(List<Node> nodes, int p, int c) {
-        if(nodes.get(p).children == null){
+        if (nodes.get(p).children == null) {
             nodes.get(p).children = new ArrayList<>();
         }
         nodes.get(p).children.add(nodes.get(c));

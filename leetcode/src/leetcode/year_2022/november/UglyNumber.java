@@ -11,7 +11,7 @@ public class UglyNumber {
     }
 
     public boolean isUgly(int n) {
-        if(n == 0){
+        if (n == 0) {
             return false;
         }
         int[] factors = new int[]{5, 3, 2};

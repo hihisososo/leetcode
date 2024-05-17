@@ -47,12 +47,12 @@ public class PushDominoes {
             } else if (direction == 'R') {
                 rightAppeared = true;
                 if (queue.size() > 1 && queue.peek().equals('R')) {
-                    while (queue.size() > 1){
+                    while (queue.size() > 1) {
                         queue.poll();
                         result.append('R');
                     }
-                }else if(queue.size() > 1){
-                    while (queue.size() > 1){
+                } else if (queue.size() > 1) {
+                    while (queue.size() > 1) {
                         queue.poll();
                         result.append('R');
                     }

@@ -5,7 +5,7 @@ import java.util.List;
 
 public class MissingRanges {
     public static void main(String[] args) {
-        int[] nums = new int[]{0,1,3,50,75};
+        int[] nums = new int[]{0, 1, 3, 50, 75};
         int lower = 0;
         int upper = 99;
         System.out.println(new MissingRanges().findMissingRanges(nums, lower, upper));

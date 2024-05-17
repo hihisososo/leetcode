@@ -7,8 +7,8 @@ public class PutBoxesIntoTheWarehouseI {
     public static void main(String[] args) {
 //        int[] boxes = new int[]{4, 3, 4, 1};
 //        int[] warehouse = new int[]{5, 3, 3, 4, 1};
-        int[] boxes = new int[]{1,2,3};
-        int[] warehouse = new int[]{1,2,3,4};
+        int[] boxes = new int[]{1, 2, 3};
+        int[] warehouse = new int[]{1, 2, 3, 4};
         System.out.println(new PutBoxesIntoTheWarehouseI().maxBoxesInWarehouse(boxes, warehouse));
     }
 

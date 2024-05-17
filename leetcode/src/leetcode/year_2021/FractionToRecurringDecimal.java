@@ -9,7 +9,7 @@ public class FractionToRecurringDecimal {
     }
 
     public String fractionToDecimal(int numerator, int denominator) {
-        if(numerator == 0){
+        if (numerator == 0) {
             return "0";
         }
 
@@ -34,7 +34,7 @@ public class FractionToRecurringDecimal {
         }
 
         StringBuffer pointSuffix = new StringBuffer();
-        HashMap<Long,Integer> repeatCheckMap = new HashMap<>();
+        HashMap<Long, Integer> repeatCheckMap = new HashMap<>();
         while (remnant != 0) {
             if (repeatCheckMap.containsKey(remnant)) {
                 int idx = repeatCheckMap.get(remnant);

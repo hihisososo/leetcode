@@ -4,7 +4,7 @@ import java.util.Stack;
 
 public class EvaluateReversePolishNotation {
     public static void main(String[] args) {
-        String[] tokens = new String[]{"10","6","9","3","+","-11","*","/","*","17","+","5","+"};
+        String[] tokens = new String[]{"10", "6", "9", "3", "+", "-11", "*", "/", "*", "17", "+", "5", "+"};
         System.out.println(new EvaluateReversePolishNotation().evalRPN(tokens));
     }
 
@@ -14,7 +14,7 @@ public class EvaluateReversePolishNotation {
         for (int i = 0; i < tokens.length; i++) {
             if (isOperator(tokens[i])) {
                 stack.push(operation(stack.pop(), stack.pop(), tokens[i]));
-            }else {
+            } else {
                 stack.push(Integer.parseInt(tokens[i]));
             }
         }

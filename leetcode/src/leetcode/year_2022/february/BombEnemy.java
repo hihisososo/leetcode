@@ -1,6 +1,5 @@
 package leetcode.year_2022.february;
 
-import java.util.Arrays;
 import java.util.concurrent.atomic.AtomicInteger;
 
 public class BombEnemy {

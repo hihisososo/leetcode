@@ -12,20 +12,20 @@ public class PlusOne {
     public int[] plusOne(int[] digits) {
         LinkedList<Integer> result = new LinkedList<>();
         int carry = 1;
-        for (int i = digits.length - 1; i >=0 ; i--) {
+        for (int i = digits.length - 1; i >= 0; i--) {
             int digit = digits[i];
-            if(digit == 9 && carry == 1){
+            if (digit == 9 && carry == 1) {
                 result.addFirst(0);
                 carry = 1;
-            }else{
+            } else {
                 result.addFirst(digit + carry);
                 carry = 0;
             }
         }
-        if(carry == 1){
+        if (carry == 1) {
             result.addFirst(carry);
         }
 
-        return result.stream().mapToInt(i->i).toArray();
+        return result.stream().mapToInt(i -> i).toArray();
     }
 }

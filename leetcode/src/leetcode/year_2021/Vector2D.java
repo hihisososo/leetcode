@@ -1,6 +1,6 @@
 package leetcode.year_2021;
 
-import javafx.util.Pair;
+import common.Pair;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -18,14 +18,14 @@ public class Vector2D {
     }
 
     int[][] vec;
-    int current=-1;
-    List<Pair<Integer,Integer>> indexes = new ArrayList<>();
+    int current = -1;
+    List<Pair<Integer, Integer>> indexes = new ArrayList<>();
 
     public Vector2D(int[][] vec) {
         this.vec = vec;
         for (int i = 0; i < vec.length; i++) {
             for (int j = 0; j < vec[i].length; j++) {
-                indexes.add(new Pair<>(i,j));
+                indexes.add(new Pair<>(i, j));
             }
         }
     }
@@ -36,7 +36,7 @@ public class Vector2D {
     }
 
     public boolean hasNext() {
-        if(current < indexes.size() - 1){
+        if (current < indexes.size() - 1) {
             return true;
         }
         return false;

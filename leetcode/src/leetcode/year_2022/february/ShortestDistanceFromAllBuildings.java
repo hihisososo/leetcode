@@ -1,6 +1,9 @@
 package leetcode.year_2022.february;
 
-import java.util.*;
+import java.util.ArrayList;
+import java.util.LinkedList;
+import java.util.List;
+import java.util.Queue;
 
 public class ShortestDistanceFromAllBuildings {
     public static void main(String[] args) {
@@ -37,10 +40,10 @@ public class ShortestDistanceFromAllBuildings {
             if (grid[poll.row][poll.col] == 1 && poll.distance == 0) {
                 continue;
             }
-            queue.add(new Distance(poll.row + 1, poll.col, poll.originPoint, poll.distance+1));
-            queue.add(new Distance(poll.row - 1, poll.col, poll.originPoint, poll.distance+1));
-            queue.add(new Distance(poll.row, poll.col + 1, poll.originPoint, poll.distance+1));
-            queue.add(new Distance(poll.row, poll.col - 1, poll.originPoint, poll.distance+1));
+            queue.add(new Distance(poll.row + 1, poll.col, poll.originPoint, poll.distance + 1));
+            queue.add(new Distance(poll.row - 1, poll.col, poll.originPoint, poll.distance + 1));
+            queue.add(new Distance(poll.row, poll.col + 1, poll.originPoint, poll.distance + 1));
+            queue.add(new Distance(poll.row, poll.col - 1, poll.originPoint, poll.distance + 1));
 
         }
 

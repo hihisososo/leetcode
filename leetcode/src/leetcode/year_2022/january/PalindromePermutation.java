@@ -15,7 +15,7 @@ public class PalindromePermutation {
         HashMap<Character, Integer> checkMap = new HashMap<>();
         for (int i = 0; i < s.length(); i++) {
             checkMap.putIfAbsent(s.charAt(i), 0);
-            checkMap.put(s.charAt(i), checkMap.get(s.charAt(i))+1);
+            checkMap.put(s.charAt(i), checkMap.get(s.charAt(i)) + 1);
         }
 
         if (s.length() % 2 == 0) {

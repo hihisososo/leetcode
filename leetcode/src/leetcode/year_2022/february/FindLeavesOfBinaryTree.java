@@ -15,7 +15,7 @@ public class FindLeavesOfBinaryTree {
 
     public List<List<Integer>> findLeaves(TreeNode root) {
         List<List<Integer>> result = new ArrayList<>();
-        if(root == null){
+        if (root == null) {
             return result;
         }
         while (true) {

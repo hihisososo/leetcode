@@ -7,7 +7,8 @@ public class RearrangeStringKDistanceApart {
 //        String s = "aabbcc";int k = 3;
 //        String s = "aaadbbcc";int k = 2;
 //        String s = "aaabc";int k = 3;
-        String s = "aa"; int k = 0;
+        String s = "aa";
+        int k = 0;
         System.out.println(new RearrangeStringKDistanceApart().rearrangeString(s, k));
     }
 
@@ -46,11 +47,11 @@ public class RearrangeStringKDistanceApart {
                 Map.Entry<Character, Integer> wq = waitQueue.poll();
                 if (result.length() - result.lastIndexOf(String.valueOf(wq.getKey())) >= k) {
                     cntQueue.offer(wq);
-                }else{
+                } else {
                     tempQueue.add(wq);
                 }
             }
-            while(!tempQueue.isEmpty()){
+            while (!tempQueue.isEmpty()) {
                 waitQueue.add(tempQueue.poll());
             }
         }

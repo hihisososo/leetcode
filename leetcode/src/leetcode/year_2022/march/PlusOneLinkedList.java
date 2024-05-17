@@ -7,14 +7,14 @@ public class PlusOneLinkedList {
 //        ListNode head = new ListNode(9, new ListNode(9, new ListNode(9)));
         ListNode head = new ListNode(0);
         ListNode node = new PlusOneLinkedList().plusOne(head);
-        while (node != null){
+        while (node != null) {
             System.out.println(node.val);
             node = node.next;
         }
     }
 
     public ListNode plusOne(ListNode head) {
-        if(head == null){
+        if (head == null) {
             return null;
         }
         if (plus(head)) {

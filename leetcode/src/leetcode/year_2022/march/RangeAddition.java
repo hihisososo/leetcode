@@ -4,7 +4,8 @@ import java.util.Arrays;
 
 public class RangeAddition {
     public static void main(String[] args) {
-        int length=5;int[][] updates = new int[][]{{1,3,2},{2,4,3},{0,2,-2}};
+        int length = 5;
+        int[][] updates = new int[][]{{1, 3, 2}, {2, 4, 3}, {0, 2, -2}};
         System.out.println(Arrays.toString(new RangeAddition().getModifiedArray(length, updates)));
     }
 
@@ -19,10 +20,10 @@ public class RangeAddition {
             max = Math.max(max, u[1]);
         }
 
-        for (int i=min;i <=max;i++){
+        for (int i = min; i <= max; i++) {
             int sum = 0;
             for (int[] u : updates) {
-                if(u[0] <= i && i <= u[1]){
+                if (u[0] <= i && i <= u[1]) {
                     sum += u[2];
                 }
             }

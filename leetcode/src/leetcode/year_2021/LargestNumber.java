@@ -5,7 +5,7 @@ import java.util.Comparator;
 
 public class LargestNumber {
     public static void main(String[] args) {
-        int[] nums = new int[]{3,30,34,5,9};
+        int[] nums = new int[]{3, 30, 34, 5, 9};
         System.out.println(new LargestNumber().largestNumber(nums));
     }
 

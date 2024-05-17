@@ -4,7 +4,7 @@ import java.util.*;
 
 public class TaskScheduler {
     public static void main(String[] args) {
-        char[] tasks = new char[]{'A','A','A','A','A','A','B','C','D','E','F','G'};
+        char[] tasks = new char[]{'A', 'A', 'A', 'A', 'A', 'A', 'B', 'C', 'D', 'E', 'F', 'G'};
         System.out.println(new TaskScheduler().leastInterval(tasks, 2));
     }
 

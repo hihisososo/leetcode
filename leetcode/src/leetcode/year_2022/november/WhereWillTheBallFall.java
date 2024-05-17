@@ -1,6 +1,6 @@
 package leetcode.year_2022.november;
 
-import javafx.util.Pair;
+import common.Pair;
 
 import java.util.Arrays;
 
@@ -8,7 +8,7 @@ public class WhereWillTheBallFall {
     public static void main(String[] args) {
         System.out.println(Arrays.toString(new WhereWillTheBallFall().findBall(new int[][]{{1, 1, 1, -1, -1}, {1, 1, 1, -1, -1}, {-1, -1, -1, 1, 1}, {1, 1, 1, 1, -1}, {-1, -1, -1, -1, -1}})));
         System.out.println(Arrays.toString(new WhereWillTheBallFall().findBall(new int[][]{{-1}})));
-        System.out.println(Arrays.toString(new WhereWillTheBallFall().findBall(new int[][]{{1,1,1,1,1,1},{-1,-1,-1,-1,-1,-1},{1,1,1,1,1,1},{-1,-1,-1,-1,-1,-1}})));
+        System.out.println(Arrays.toString(new WhereWillTheBallFall().findBall(new int[][]{{1, 1, 1, 1, 1, 1}, {-1, -1, -1, -1, -1, -1}, {1, 1, 1, 1, 1, 1}, {-1, -1, -1, -1, -1, -1}})));
     }
 
     public int[] findBall(int[][] grid) {

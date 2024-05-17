@@ -52,7 +52,7 @@ public class GameOfLife {
         int nCnt = getNeighborCnt(i, j, board);
         if (nCnt == 3) {
             board[i][j] = 4;
-        }else{
+        } else {
 
         }
     }

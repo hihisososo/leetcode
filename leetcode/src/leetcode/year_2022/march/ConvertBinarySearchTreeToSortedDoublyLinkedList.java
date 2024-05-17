@@ -15,7 +15,7 @@ public class ConvertBinarySearchTreeToSortedDoublyLinkedList {
     Node lastNode;
 
     public Node treeToDoublyList(Node root) {
-        if(root == null){
+        if (root == null) {
             return null;
         }
         findHeadAndMakeLinkedList(root);
