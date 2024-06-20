@@ -1,5 +1,8 @@
 package leetcode.year_2024.june;
 
+import java.util.HashMap;
+import java.util.Map;
+
 public class ContinuousSubarraySum {
     public static void main(String[] args) {
         System.out.println(new ContinuousSubarraySum().checkSubarraySum(new int[]{23, 2, 4, 6, 7}, 6));
@@ -10,18 +13,21 @@ public class ContinuousSubarraySum {
     }
 
     public boolean checkSubarraySum(int[] nums, int k) {
-        int[] subSum = new int[nums.length + 1];
-        subSum[0] = 0;
-        for (int i = 1; i < subSum.length; i++) {
-            subSum[i] = subSum[i - 1] + nums[i - 1];
-        }
+        Map<Integer, Integer> occurMap = new HashMap<>();
 
-        for (int i = 0; i < subSum.length; i++) {
-            for (int j = i + 2; j < subSum.length; j++) {
-                if ((subSum[j] - subSum[i]) % k == 0) {
+        int prefixSum = 0;
+        occurMap.put(0, -1);
+
+        for (int i = 0; i < nums.length; i++) {
+            prefixSum = (prefixSum + nums[i]) % k;
+            if (occurMap.containsKey(prefixSum)) {
+                if (i - occurMap.get(prefixSum) >= 2) {
                     return true;
                 }
+            } else {
+                occurMap.put(prefixSum, i);
             }
+
         }
         return false;
     }
